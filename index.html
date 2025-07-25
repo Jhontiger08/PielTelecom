@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Piel Telecom - A melhor e mais rápida internet fibra óptica de Mongaguá. Planos para gamers, home office e toda a família.">
+    <title>Piel Telecom - A Melhor Internet Fibra Óptica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="imgs/icone.png" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Flickity Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Estilos Internos Otimizados -->
+    <style>
+        :root {
+            --brand-gold: #e5a10d;
+            --brand-gold-dark: #d4910c;
+            --text-primary: #111827; /* gray-900 */
+            --text-secondary: #4b5563; /* gray-600 */
+            --border-color: #d1d5db; /* gray-300 */
+            --background-light: #f9fafb; /* gray-50 */
+            --success-green: #16a34a; /* green-600 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .hero-bg {
+    background: linear-gradient(rgba(30, 20, 20, 0.85), rgba(15, 10, 10, 0.95)), url('imgs/fotofundo.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+        .gold-accent { color: var(--brand-gold); }
+
+        .cta-button {
+            display: inline-flex;
+            width: auto;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--brand-gold);
+            color: white;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+            transform-origin: center;
+        }
+        .cta-button:hover {
+            background-color: var(--brand-gold-dark);
+            transform: scale(1.03);
+        }
+        .cta-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        @media (max-width: 640px) { .cta-button { width: 100%; } }
+
+        .plan-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .plan-card:hover { transform: translateY(-6px); }
+        .plan-card.recommended-plan {
+            border-color: var(--brand-gold);
+            box-shadow: 0 10px 30px rgba(229, 161, 13, 0.3);
+        }
+
+        .contratar-btn .arrow-icon {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        .contratar-btn:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--background-light);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            background-color: white;
+            border-color: var(--brand-gold);
+            box-shadow: 0 0 0 3px rgba(229, 161, 13, 0.3);
+        }
+
+        .form-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .form-radio-label:hover {
+            background-color: var(--background-light);
+            border-color: #9ca3af;
+        }
+        .form-radio-label.is-checked {
+            background-color: #fefce8; /* yellow-50 */
+            border-color: var(--brand-gold);
+            box-shadow: 0 0 0 2px rgba(229, 161, 13, 0.4);
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #ef4444; /* red-500 */
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            transform: rotate(12deg);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid var(--brand-gold);
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-element { opacity: 0; }
+        .fade-in-element.is-visible { animation: fadeIn 0.7s ease-out forwards; }
+
+        .carousel-cell {
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
+        }
+        @media screen and (min-width: 768px) { .carousel-cell { width: 50%; } }
+        @media screen and (min-width: 1024px) { .carousel-cell { width: 33.33%; } }
+
+        .flickity-prev-next-button { width: 44px; height: 44px; background: rgba(255, 255, 255, 0.9); color: #333; }
+        .flickity-prev-next-button:hover { background: var(--brand-gold); color: white; }
+        .flickity-page-dots .dot { background: #ccc; }
+        .flickity-page-dots .dot.is-selected { background: var(--brand-gold); }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <header class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="/" class="flex items-center" aria-label="Página Inicial da Piel Telecom">
+                <!-- LOGO: Caminho corrigido -->
+                <img src="imgs/logo.png" alt="Logo Piel Telecom" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x40/111827/e5a10d?text=Piel+Telecom';">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="planos.html" class="text-gray-600 hover:text-brand-gold font-medium transition-colors">Planos</a>
+                <a href="#diferenciais" class="text-gray-600 hover:text-brand-gold font-medium transition-colors">Diferenciais</a>
+                <a href="#depoimentos" class="text-gray-600 hover:text-brand-gold font-medium transition-colors">Depoimentos</a>
+                <a href="#" class="bg-yellow-100 text-brand-gold font-semibold px-4 py-2 rounded-lg hover:bg-yellow-200 transition-colors">Área do Cliente</a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
+                <a href="planos.html" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Planos</a>
+                <a href="#diferenciais" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Diferenciais</a>
+                <a href="#depoimentos" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Depoimentos</a>
+                <a href="#" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Área do Cliente</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- SEÇÃO HERO -->
+        <section id="hero-section" class="hero-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center fade-in-element is-visible">
+                <span class="inline-block bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm font-semibold mb-6">🏆 A Melhor Internet de Mongaguá</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Conexão de verdade, <br class="hidden sm:block">sempre ao seu lado.</h1>
+                <p class="text-lg md:text-xl text-yellow-100/90 mb-10 max-w-3xl mx-auto">Navegue, trabalhe, jogue e assista com a estabilidade e a velocidade que só a Piel Telecom oferece.</p>
+                <a href="planos.html" class="cta-button">Conheça Nossos Planos</a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO RECOMENDADOR IA -->
+        <section id="recomendador" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center fade-in-element">
+                <h2 class="text-3xl font-bold text-gray-900">Não sabe qual plano escolher?</h2>
+                <p class="text-lg text-gray-600 mt-2 mb-8">Descreva sua necessidade e deixe nossa IA encontrar o plano perfeito para você!</p>
+                <div class="max-w-3xl mx-auto bg-gray-50 p-6 md:p-8 rounded-xl shadow-lg">
+                    <div class="space-y-4">
+                        <div class="text-left">
+                            <label for="needs-input" class="font-semibold text-gray-700">Como você e sua família usam a internet?</label>
+                            <textarea id="needs-input" class="form-input mt-2" rows="3" placeholder="Ex: Somos 4 pessoas, usamos para filmes em 4K, jogos online e trabalho de casa."></textarea>
+                        </div>
+                        <button id="recommend-btn" class="cta-button">
+                            <span class="gemini-icon mr-2">✨</span> Encontrar meu plano ideal
+                        </button>
+                        <div id="recommend-loader" class="hidden mx-auto loader"></div>
+                        <p id="recommender-error" class="text-red-600 mt-2 hidden"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PLANOS -->
+        <section id="planos" class="py-12 md:py-20 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6">
+
+                <!-- Container para Planos Recomendados (gerado via JS) -->
+                <div id="recommended-plans-container" class="hidden">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Aqui estão os 3 melhores planos para o seu perfil!</h2>
+                        <p class="text-md md:text-lg text-gray-600 mt-2">Analisamos suas respostas e separamos as opções com o melhor custo-benefício.</p>
+                    </div>
+                    <!-- Carrossel sem inicialização via data-attribute para controle total do JS -->
+                    <div id="recommended-plans-grid" class="main-carousel -mx-3">
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="planos.html" class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">Ver todos os planos</a>
+                    </div>
+                </div>
+
+                <!-- Container para Planos em Destaque (visível por padrão) -->
+                <div id="all-plans-container">
+                    <div class="mb-16">
+                        <div class="text-center mb-12 fade-in-element">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Planos em <span class="gold-accent">Promoção</span></h2>
+                            <p class="text-md md:text-lg text-gray-600 mt-2">As melhores ofertas para você aproveitar a ultravelocidade pagando menos.</p>
+                        </div>
+
+                        <!-- Carrossel sem inicialização via data-attribute para controle total do JS -->
+                        <div id="promo-carousel" class="main-carousel -mx-3">
+
+                            <!-- Plano 200M -->
+                            <div class="carousel-cell">
+                                <div id="plan-promo-200" class="plan-card fade-in-element relative bg-white p-6 rounded-xl shadow-lg flex flex-col h-full" data-price="R$ 79,99/mês" data-plan="Piel Telecom Fibra 200M+">
+                                    <div class="promo-badge">OFERTA</div>
+                                    <h3 class="text-2xl font-bold text-gray-900">Fibra 200M+</h3>
+                                    <p class="text-gray-500 mb-4">Para uso básico e redes sociais</p>
+                                    <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$79</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
+                                    <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 200 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 100 Mbps</li></ul></div>
+                                    <div class="gemini-reason-container"></div>
+                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 200M+">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
+                                </div>
+                            </div>
+
+                            <!-- Plano 600M -->
+                            <div class="carousel-cell">
+                                <div id="plan-promo-600" class="plan-card fade-in-element relative bg-white p-6 rounded-xl shadow-lg flex flex-col h-full border-2 border-[#e5a10d]" data-price="R$ 99,99/mês" data-plan="Piel Telecom Fibra 600M+">
+                                    <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[#e5a10d] text-white text-sm font-bold px-4 py-1 rounded-full z-10">MELHOR CUSTO-BENEFÍCIO</span>
+                                    <div class="promo-badge">OFERTA</div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Fibra 600M+</h3>
+                                    <p class="text-gray-500 mb-4">Perfeito para Família e Streaming 4K</p>
+                                    <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$99</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
+                                    <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 600 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 300 Mbps</li></ul></div>
+                                    <div class="gemini-reason-container"></div>
+                                    <button class="contratar-btn w-full bg-[#e5a10d] hover:bg-[#d4910c] text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 600M+">Quero este! <span class="arrow-icon">&rarr;</span></button>
+                                </div>
+                            </div>
+
+                            <!-- Plano 1 Giga -->
+                            <div class="carousel-cell">
+                                <div id="plan-promo-1000" class="plan-card fade-in-element relative bg-white p-6 rounded-xl shadow-lg flex flex-col h-full" data-price="R$ 119,99/mês" data-plan="Piel Telecom Fibra 1 Giga+">
+                                    <div class="promo-badge">OFERTA</div>
+                                    <h3 class="text-2xl font-bold text-gray-900">Fibra 1 Giga+</h3>
+                                    <p class="text-gray-500 mb-4">Velocidade máxima com preço de oferta</p>
+                                    <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$119</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
+                                    <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li></ul></div>
+                                    <div class="gemini-reason-container"></div>
+                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 1 Giga+">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Template para clonar os planos no recomendador -->
+        <template id="all-plans-storage">
+            <div id="plan-200" class="plan-card" data-price="R$ 79,99/mês" data-plan="Fibra Home 200M+"><h3 class="text-2xl font-bold text-gray-900">Fibra 200M+</h3><p class="text-gray-500 mb-4">Uso básico, redes sociais, vídeos HD</p><div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$79</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 200 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 100 Mbps</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-400" class="plan-card" data-price="R$ 94,99/mês" data-plan="Fibra Home 400M+"><h3 class="text-2xl font-bold text-gray-900">Fibra 400M+</h3><p class="text-gray-500 mb-4">Família pequena e home office</p><div class="my-4"><span class="text-5xl font-extrabold">R$94</span><span class="text-2xl font-bold">,99</span><span class="font-medium">/mês</span></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 400 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 200 Mbps</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-600" class="plan-card" data-price="R$ 99,99/mês" data-plan="Fibra Home 600M+"><h3 class="text-2xl font-bold text-gray-900">Fibra 600M+</h3><p class="text-gray-500 mb-4">Família, streaming 4K, ótimo custo-benefício</p><div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$99</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 600 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 300 Mbps</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-brand-gold hover:bg-brand-gold-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Quero este! <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-1000" class="plan-card" data-price="R$ 119,99/mês" data-plan="Fibra Home 1G+"><h3 class="text-2xl font-bold text-gray-900">Fibra 1 Giga+</h3><p class="text-gray-500 mb-4">Velocidade máxima com preço de oferta</p><div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$119</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            
+            <!-- Novos planos adicionados -->
+            <div id="plan-1000-homeoffice" class="plan-card" data-price="R$ 169,99/mês" data-plan="Fibra 1G+ Home Office"><h3 class="text-2xl font-bold text-gray-900">1 Giga+ Home Office</h3><p class="text-gray-500 mb-4">Otimizado para trabalho remoto</p><div class="my-4 text-gray-800"><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$169</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Otimização para videochamadas</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-1000-gamer" class="plan-card" data-price="R$ 169,99/mês" data-plan="Fibra 1G+ Gamer"><h3 class="text-2xl font-bold text-gray-900">1 Giga+ Gamer</h3><p class="text-gray-500 mb-4">Ping baixo e rotas otimizadas</p><div class="my-4 text-gray-800"><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$169</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Wi-Fi 6 Gamer</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-1000-black" class="plan-card" data-price="R$ 199,99/mês" data-plan="Fibra 1G+ Black"><h3 class="text-2xl font-bold text-gray-900">1 Giga+ Black</h3><p class="text-gray-500 mb-4">Para heavy users e casa conectada</p><div class="my-4 text-gray-800"><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$199</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Equipamentos Premium (Wi-Fi 6/6E)</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-1000-black-disney" class="plan-card" data-price="R$ 239,99/mês" data-plan="Fibra 1G+ Black c/ Disney+"><h3 class="text-2xl font-bold text-gray-900">1 Giga+ Black c/ Disney+</h3><p class="text-gray-500 mb-4">Pacote completo com streaming</p><div class="my-4 text-gray-800"><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$239</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Disney+ incluso</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Contratar Agora <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-socio-torcedor" class="plan-card" data-price="Preço Especial" data-plan="Sócio Torcedor 800M"><h3 class="text-2xl font-bold text-gray-900">Sócio Torcedor 800M</h3><p class="text-gray-500 mb-4">Exclusivo para torcedores</p><div class="my-4 text-gray-800"><p class="text-3xl font-bold">Preço Especial</p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 800 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 400 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Ajude seu time do coração</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Consultar <span class="arrow-icon">&rarr;</span></button></div>
+            <div id="plan-combo-movel" class="plan-card" data-price="Consultar" data-plan="Fibra 600M+ Combo Móvel"><h3 class="text-2xl font-bold text-gray-900">Fibra 600M+ Combo Móvel</h3><p class="text-gray-500 mb-4">Conveniência e economia</p><div class="my-4 text-gray-800"><p class="text-3xl font-bold">Consultar Preço</p></div><div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 600 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Plano de celular com 10GB ou 15GB</li></ul></div><div class="gemini-reason-container mt-auto"></div><button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-4">Consultar <span class="arrow-icon">&rarr;</span></button></div>
+
+        </template>
+        
+        <!-- SEÇÃO DIFERENCIAIS -->
+        <section id="diferenciais" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in-element">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Não é só internet, é uma experiência <span class="gold-accent">Piel Telecom</span></h2>
+                    <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">Entenda por que somos a escolha de quem busca mais do que uma simples conexão.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="text-center fade-in-element"><div class="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i class="fas fa-wave-square fa-2x text-brand-gold-dark"></i></div><h3 class="text-xl font-bold mb-2">Rede 100% Fibra</h3><p class="text-gray-600">Levamos a fibra óptica até dentro da sua casa (FTTH), garantindo máxima velocidade e uma conexão à prova de interferências.</p></div>
+                    <div class="text-center fade-in-element" style="animation-delay: 0.1s;"><div class="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i class="fas fa-headset fa-2x text-brand-gold-dark"></i></div><h3 class="text-xl font-bold mb-2">Suporte que Resolve</h3><p class="text-gray-600">Nosso atendimento é local, humanizado e focado em resolver seu problema na primeira chamada.</p></div>
+                    <div class="text-center fade-in-element" style="animation-delay: 0.2s;"><div class="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i class="fas fa-wifi fa-2x text-brand-gold-dark"></i></div><h3 class="text-xl font-bold mb-2">Wi-Fi de Verdade</h3><p class="text-gray-600">Oferecemos os melhores equipamentos, incluindo a tecnologia Wi-Fi 6, para que a ultravelocidade chegue em todos os cantos.</p></div>
+                    <div class="text-center fade-in-element" style="animation-delay: 0.3s;"><div class="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i class="fas fa-medal fa-2x text-brand-gold-dark"></i></div><h3 class="text-xl font-bold mb-2">A Melhor da Região</h3><p class="text-gray-600">Somos reconhecidos pela velocidade e estabilidade, um reflexo da nossa dedicação à qualidade superior.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DEPOIMENTOS -->
+        <section id="depoimentos" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in-element">
+                    <h2 class="text-4xl font-bold text-gray-900">O que nossos <span class="gold-accent">clientes</span> dizem</h2>
+                    <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">A confiança de quem usa e aprova a nossa conexão todos os dias.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=MS" alt="Foto da cliente Maria S." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Finalmente uma internet que não cai no meio da minha reunião! O suporte da Piel Telecom é rápido e resolve de verdade. Recomendo de olhos fechados."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Maria S., Santos</figcaption></figure>
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.1s;"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=JP" alt="Foto do cliente João P." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Sou gamer e o ping baixo faz toda a diferença. Com a Piel Telecom, consigo jogar online sem lag nenhum. A estabilidade é incrível, valeu cada centavo."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- João P., Campinas</figcaption></figure>
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.2s;"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=AC" alt="Foto da cliente Ana C." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Trabalho em home office e preciso enviar arquivos pesados o tempo todo. A velocidade de upload da Piel Telecom é fantástica, agilizou muito a minha rotina."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Ana C., Jundiaí</figcaption></figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ MELHORADO -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Sobre -->
+                <div class="col-span-1 md:col-span-2">
+                    <a href="/" class="flex items-center mb-4">
+                        <img src="imgs/logo.png" alt="Logo Piel Telecom" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x40/111827/e5a10d?text=Piel+Telecom';">
+                    </a>
+                    <p class="text-gray-400">Construindo conexões de verdade em Mongaguá. Internet 100% fibra óptica com a velocidade e estabilidade que você merece.</p>
+                </div>
+                <!-- Links Rápidos -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="planos.html" class="text-gray-400 hover:text-brand-gold transition-colors">Nossos Planos</a></li>
+                        <li><a href="#diferenciais" class="text-gray-400 hover:text-brand-gold transition-colors">Diferenciais</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-gold transition-colors">Área do Cliente</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-gold transition-colors">Suporte</a></li>
+                    </ul>
+                </div>
+                <!-- Contato e Redes Sociais -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Siga-nos</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-brand-gold transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-brand-gold transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://wa.me/5513991830277" aria-label="WhatsApp" class="text-gray-400 hover:text-brand-gold transition-colors"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Piel Telecom. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE CHECKOUT -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[95vh] flex flex-col">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-start">
+                <div>
+                    <h2 id="modal-title" class="text-2xl font-bold text-gray-900">Finalizar Contratação</h2>
+                    <p class="text-gray-600 mt-1">Plano: <span id="selected-plan-name" class="font-bold text-brand-gold"></span></p>
+                </div>
+                <button id="close-modal-btn" aria-label="Fechar modal" class="text-gray-500 hover:text-red-600 transition-colors p-1">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 md:p-8 overflow-y-auto">
+                <div id="whatsapp-form-container">
+                    <form id="whatsapp-form" class="space-y-8">
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>Dados Pessoais</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-nome" class="block font-medium text-gray-700 mb-1">Nome Completo</label><input type="text" id="wa-nome" name="wa-nome" class="form-input" required></div><div><label for="wa-mae" class="block font-medium text-gray-700 mb-1">Nome da Mãe</label><input type="text" id="wa-mae" name="wa-mae" class="form-input" required></div><div class="md:col-span-2"><label for="wa-nascimento" class="block font-medium text-gray-700 mb-1">Data de Nascimento</label><input type="date" id="wa-nascimento" name="wa-nascimento" class="form-input" required></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" /><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm3 0a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>Documentos & Contato</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-cpf" class="block font-medium text-gray-700 mb-1">CPF</label><input type="text" id="wa-cpf" name="wa-cpf" class="form-input" required></div><div><label for="wa-rg" class="block font-medium text-gray-700 mb-1">RG</label><input type="text" id="wa-rg" name="wa-rg" class="form-input" required></div><div><label for="wa-email" class="block font-medium text-gray-700 mb-1">E-mail</label><input type="email" id="wa-email" name="wa-email" class="form-input" required></div><div><label for="wa-tel1" class="block font-medium text-gray-700 mb-1">Telefone Titular</label><input type="tel" id="wa-tel1" name="wa-tel1" class="form-input" required></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>Endereço de Instalação</legend><div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4"><div><label for="wa-cep" class="block font-medium text-gray-700 mb-1">CEP</label><input type="text" id="wa-cep" name="wa-cep" class="form-input" required></div><div class="md:col-span-2"><label for="wa-rua" class="block font-medium text-gray-700 mb-1">Rua</label><input type="text" id="wa-rua" name="wa-rua" class="form-input" required></div><div><label for="wa-numero" class="block font-medium text-gray-700 mb-1">Número</label><input type="text" id="wa-numero" name="wa-numero" class="form-input" required></div><div><label for="wa-bairro" class="block font-medium text-gray-700 mb-1">Bairro</label><input type="text" id="wa-bairro" name="wa-bairro" class="form-input" required></div><div><label for="wa-cidade" class="block font-medium text-gray-700 mb-1">Cidade</label><input type="text" id="wa-cidade" name="wa-cidade" class="form-input" required></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>Agendamento da Instalação</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2"><label for="periodo-manha" class="form-radio-label"><input type="radio" id="periodo-manha" name="installation_period" value="MANHÃ - 8 as 12h" class="hidden" required>Manhã (8h às 12h)</label><label for="periodo-tarde" class="form-radio-label"><input type="radio" id="periodo-tarde" name="installation_period" value="TARDE - 14 as 18h" class="hidden">Tarde (14h às 18h)</label></div></fieldset>
+                        <div class="pt-6 text-right"><button type="submit" id="submit-whatsapp-btn" class="cta-button">Continuar Cadastro</button></div>
+                    </form>
+                </div>
+                <div id="whatsapp-success" class="text-center hidden py-10">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto"><svg class="w-10 h-10 text-success-green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-6">Tudo pronto!</h2>
+                    <p class="text-gray-600 mt-4 max-w-md mx-auto">Preparamos uma mensagem com seus dados. Para finalizar, clique no botão abaixo e envie a mensagem no WhatsApp.</p>
+                    <a id="whatsapp-send-link" href="#" target="_blank" class="cta-button mt-8" style="background-color: var(--success-green);"><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 14.21a1.2 1.2 0 00-1.69.19l-1.22 1.52a10.05 10.05 0 01-4.88-4.88l1.52-1.22a1.2 1.2 0 00.19-1.69l-1.6-3.83a1.2 1.2 0 00-1.58-.72L4.58 4.7a1.2 1.2 0 00-.86 1.15c-.01.07 0 .14.02.2 1.24 5.23 6.37 10.36 11.6 11.6.06.02.13.03.2.03a1.2 1.2 0 001.15-.86l1.2-2.73a1.2 1.2 0 00-.72-1.58l-3.83-1.6zM12 2.04a10 10 0 00-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10z"></path></svg>Abrir WhatsApp e Enviar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://wa.me/5513991830277?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Configurações globais
+        const CONFIG = {
+            whatsappNumber: '5513991830277'
+        };
+
+        // Mapeamento dos elementos do DOM
+        const NODES = {
+            menuBtn: document.getElementById('menu-btn'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            menuIconOpen: document.getElementById('menu-icon-open'),
+            menuIconClose: document.getElementById('menu-icon-close'),
+            mobileMenuLinks: document.querySelectorAll('.mobile-menu-link'),
+            fadeInElements: document.querySelectorAll('.fade-in-element'),
+            recommendBtn: document.getElementById('recommend-btn'),
+            needsInput: document.getElementById('needs-input'),
+            recommendLoader: document.getElementById('recommend-loader'),
+            recommenderError: document.getElementById('recommender-error'),
+            recommendedContainer: document.getElementById('recommended-plans-container'),
+            recommendedGrid: document.getElementById('recommended-plans-grid'),
+            allPlansContainer: document.getElementById('all-plans-container'),
+            allPlansStorage: document.getElementById('all-plans-storage'),
+            checkoutModal: document.getElementById('checkout-modal'),
+            closeModalBtn: document.getElementById('close-modal-btn'),
+            selectedPlanNameSpan: document.getElementById('selected-plan-name'),
+            whatsappFormContainer: document.getElementById('whatsapp-form-container'),
+            whatsappSuccessContainer: document.getElementById('whatsapp-success'),
+            whatsappForm: document.getElementById('whatsapp-form'),
+            whatsappSendLink: document.getElementById('whatsapp-send-link'),
+            radioLabels: document.querySelectorAll('.form-radio-label'),
+            promoCarousel: document.getElementById('promo-carousel')
+        };
+
+        // Função para alternar o menu mobile
+        function toggleMobileMenu() {
+            const isExpanded = NODES.menuBtn.getAttribute('aria-expanded') === 'true';
+            NODES.menuBtn.setAttribute('aria-expanded', !isExpanded);
+            NODES.mobileMenu.classList.toggle('hidden');
+            NODES.menuIconOpen.classList.toggle('hidden');
+            NODES.menuIconClose.classList.toggle('hidden');
+        }
+
+        // Animações de fade-in ao rolar
+        function initScrollAnimation() {
+            if (!('IntersectionObserver' in window)) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            NODES.fadeInElements.forEach(el => observer.observe(el));
+        }
+
+        function displayUserError(message, errorElement) {
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+        }
+
+        // Simulação de recomendação de planos
+        async function handleRecommendation() {
+            const userInput = NODES.needsInput.value.trim();
+            if (!userInput) {
+                displayUserError("Por favor, descreva sua necessidade.", NODES.recommenderError);
+                return;
+            }
+
+            if (NODES.recommenderError) NODES.recommenderError.classList.add('hidden');
+            NODES.recommendLoader.classList.remove('hidden');
+            NODES.recommendBtn.disabled = true;
+
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                const mockResult = {
+                    "recommendations": [
+                        { "planId": "plan-600", "reason": "É o plano com melhor custo-benefício para streaming em 4K e múltiplos dispositivos." },
+                        { "planId": "plan-1000-gamer", "reason": "Ideal se você joga online e precisa da menor latência (ping) para competir." },
+                        { "planId": "plan-1000-homeoffice", "reason": "Perfeito para quem trabalha de casa e precisa de máxima estabilidade e velocidade de upload." }
+                    ]
+                };
+                renderRecommendations(mockResult);
+
+            } catch (error) {
+                console.error("Falha ao obter recomendação:", error);
+                displayUserError("Desculpe, não consegui gerar uma recomendação. Tente novamente.", NODES.recommenderError);
+            } finally {
+                NODES.recommendLoader.classList.add('hidden');
+                NODES.recommendBtn.disabled = false;
+            }
+        }
+
+        function renderRecommendations(result) {
+            const flkty = Flickity.data(NODES.recommendedGrid);
+            if (flkty) {
+                flkty.destroy();
+            }
+            
+            NODES.recommendedGrid.innerHTML = ''; 
+
+            result.recommendations.forEach(rec => {
+                const originalCard = NODES.allPlansStorage.content.getElementById(rec.planId);
+                if (originalCard) {
+                    const clonedCardContainer = document.createElement('div');
+                    clonedCardContainer.className = 'carousel-cell';
+                    const clonedCard = originalCard.cloneNode(true);
+                    
+                    const reasonContainer = clonedCard.querySelector('.gemini-reason-container');
+                    if (reasonContainer) {
+                        reasonContainer.innerHTML = `<div class="p-3 mt-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm text-yellow-800 rounded-r-lg"><strong>✨ Recomendação da IA:</strong> ${rec.reason}</div>`;
+                    }
+                    clonedCardContainer.appendChild(clonedCard);
+                    NODES.recommendedGrid.appendChild(clonedCardContainer);
+                }
+            });
+            
+            new Flickity(NODES.recommendedGrid, { 
+                wrapAround: true, 
+                pageDots: true, 
+                cellAlign: 'left', 
+                contain: true, 
+                imagesLoaded: true,
+                autoPlay: false 
+            });
+            
+            NODES.recommendedContainer.classList.remove('hidden');
+            NODES.allPlansContainer.classList.add('hidden');
+            NODES.recommendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        function openCheckoutModal(e) {
+            const button = e.target.closest('.contratar-btn');
+            if (!button) return;
+
+            const card = button.closest('.plan-card');
+            if (!card) return;
+
+            NODES.selectedPlanNameSpan.textContent = card.dataset.plan;
+            NODES.whatsappForm.dataset.plan = card.dataset.plan;
+            NODES.whatsappForm.dataset.price = card.dataset.price;
+
+            NODES.whatsappForm.reset();
+            NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
+            NODES.whatsappFormContainer.classList.remove('hidden');
+            NODES.whatsappSuccessContainer.classList.add('hidden');
+            NODES.checkoutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckoutModal() {
+            NODES.checkoutModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleWhatsappSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(NODES.whatsappForm);
+            const data = Object.fromEntries(formData.entries());
+            const { plan, price } = NODES.whatsappForm.dataset;
+
+            const message = `✨ NOVO PEDIDO DE CADASTRO ✨\n-----------------------------------\nPlano Escolhido: *${plan}*\nValor: *${price}*\n-----------------------------------\n🔹 NOME COMPLETO: ${data['wa-nome']}\n🔹 NOME DA MÃE: ${data['wa-mae']}\n🔹 DATA DE NASCIMENTO: ${data['wa-nascimento']}\n🔹 CPF: ${data['wa-cpf']}\n🔹 RG: ${data['wa-rg']}\n🔹 E-MAIL: ${data['wa-email']}\n🔹 TELEFONE TITULAR: ${data['wa-tel1']}\n🔹 ENDEREÇO: Rua ${data['wa-rua']}, Nº ${data['wa-numero']}, Bairro ${data['wa-bairro']}, Cidade ${data['wa-cidade']}, CEP ${data['wa-cep']}\n🔹 INSTALAÇÃO: ${data.installation_period}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            NODES.whatsappSendLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
+            
+            NODES.whatsappFormContainer.classList.add('hidden');
+            NODES.whatsappSuccessContainer.classList.remove('hidden');
+        }
+        
+        function handleRadioChange(event) {
+            const currentLabel = event.currentTarget;
+            NODES.radioLabels.forEach(label => {
+                label.classList.remove('is-checked');
+            });
+            currentLabel.classList.add('is-checked');
+        }
+
+        // --- INICIALIZAÇÃO E EVENT LISTENERS ---
+        initScrollAnimation();
+
+        // Inicializa o carrossel de promoções
+        if (NODES.promoCarousel) {
+            new Flickity(NODES.promoCarousel, {
+                wrapAround: true, 
+                autoPlay: false, // Sem autoplay
+                pageDots: true, 
+                cellAlign: 'left', 
+                contain: true,
+                imagesLoaded: true
+            });
+        }
+        
+        NODES.menuBtn.addEventListener('click', toggleMobileMenu);
+        NODES.mobileMenuLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
+        
+        if (NODES.recommendBtn) {
+            NODES.recommendBtn.addEventListener('click', handleRecommendation);
+        }
+        
+        NODES.closeModalBtn.addEventListener('click', closeCheckoutModal);
+        
+        NODES.checkoutModal.addEventListener('click', (e) => {
+            if (e.target === NODES.checkoutModal) {
+                closeCheckoutModal();
+            }
+        });
+        
+        document.addEventListener('click', openCheckoutModal);
+
+        NODES.whatsappForm.addEventListener('submit', handleWhatsappSubmit);
+        
+        NODES.radioLabels.forEach(label => {
+            label.addEventListener('click', handleRadioChange);
+        });
+    });
+    </script>
+</body>
+</html>
