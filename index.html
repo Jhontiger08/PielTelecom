@@ -548,6 +548,13 @@
         
         // --- LÓGICA DO RECOMENDADOR COM GEMINI API ---
 
+        // !!! IMPORTANTE !!!
+        // Para que a IA funcione fora do ambiente Gemini, você precisa de uma API Key.
+        // 1. Acesse https://aistudio.google.com/app/apikey
+        // 2. Crie uma nova API Key.
+        // 3. Cole a chave criada na constante abaixo.
+        const USER_API_KEY = "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0"; // <--- SUBSTITUIR PELA SUA CHAVE
+
         /**
          * Coleta todos os planos disponíveis a partir do template HTML.
          * @returns {Array} Uma lista de objetos, cada um representando um plano.
@@ -572,6 +579,12 @@
             const userInput = NODES.needsInput.value.trim();
             if (!userInput) {
                 displayUserError("Por favor, descreva sua necessidade para a IA.", NODES.recommenderError);
+                return;
+            }
+
+            // Verifica se a API Key foi inserida
+            if (USER_API_KEY === "COLE_SUA_API_KEY_AQUI" || !USER_API_KEY) {
+                displayUserError("API Key do Google não configurada. Por favor, adicione sua chave no código para a IA funcionar.", NODES.recommenderError);
                 return;
             }
 
@@ -624,7 +637,7 @@
                 }
             };
             
-            const apiKey = ""; // Deixado em branco para ser injetado pelo ambiente
+            const apiKey = USER_API_KEY;
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
             try {
