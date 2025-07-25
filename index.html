@@ -43,9 +43,9 @@
         }
 
         .hero-bg {
-    background: linear-gradient(rgba(30, 20, 20, 0.85), rgba(15, 10, 10, 0.95)), url('imgs/fotofundo.jpg') no-repeat center center;
-    background-size: cover;
-}
+            background: linear-gradient(rgba(30, 20, 20, 0.85), rgba(15, 10, 10, 0.95)), url('imgs/fotofundo.jpg') no-repeat center center;
+            background-size: cover;
+        }
 
         .gold-accent { color: var(--brand-gold); }
 
@@ -118,6 +118,18 @@
             border-color: var(--brand-gold);
             box-shadow: 0 0 0 3px rgba(229, 161, 13, 0.3);
         }
+        .form-input.is-invalid {
+            border-color: #ef4444; /* red-500 */
+        }
+        .form-input.is-invalid:focus {
+             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
 
         .form-radio-label {
             display: flex;
@@ -227,7 +239,7 @@
                 </button>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden">
+        <div id="mobile-menu" class="hidden md:hidden" role="navigation">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
                 <a href="planos.html" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Planos</a>
                 <a href="#diferenciais" class="mobile-menu-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-brand-gold">Diferenciais</a>
@@ -384,9 +396,9 @@
                     <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">A confiança de quem usa e aprova a nossa conexão todos os dias.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=MS" alt="Foto da cliente Maria S." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Finalmente uma internet que não cai no meio da minha reunião! O suporte da Piel Telecom é rápido e resolve de verdade. Recomendo de olhos fechados."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Maria S., Santos</figcaption></figure>
-                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.1s;"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=JP" alt="Foto do cliente João P." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Sou gamer e o ping baixo faz toda a diferença. Com a Piel Telecom, consigo jogar online sem lag nenhum. A estabilidade é incrível, valeu cada centavo."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- João P., Campinas</figcaption></figure>
-                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.2s;"><img src="https://placehold.co/80x80/E2E8F0/4A5568?text=AC" alt="Foto da cliente Ana C." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Trabalho em home office e preciso enviar arquivos pesados o tempo todo. A velocidade de upload da Piel Telecom é fantástica, agilizou muito a minha rotina."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Ana C., Jundiaí</figcaption></figure>
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col"><img loading="lazy" src="https://placehold.co/80x80/E2E8F0/4A5568?text=MS" alt="Foto da cliente Maria S." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Finalmente uma internet que não cai no meio da minha reunião! O suporte da Piel Telecom é rápido e resolve de verdade. Recomendo de olhos fechados."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Maria S., Santos</figcaption></figure>
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.1s;"><img loading="lazy" src="https://placehold.co/80x80/E2E8F0/4A5568?text=JP" alt="Foto do cliente João P." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Sou gamer e o ping baixo faz toda a diferença. Com a Piel Telecom, consigo jogar online sem lag nenhum. A estabilidade é incrível, valeu cada centavo."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- João P., Campinas</figcaption></figure>
+                    <figure class="bg-white p-8 rounded-xl shadow-lg fade-in-element flex flex-col" style="animation-delay: 0.2s;"><img loading="lazy" src="https://placehold.co/80x80/E2E8F0/4A5568?text=AC" alt="Foto da cliente Ana C." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white"><blockquote class="text-gray-600 italic mt-4 flex-grow"><p>"Trabalho em home office e preciso enviar arquivos pesados o tempo todo. A velocidade de upload da Piel Telecom é fantástica, agilizou muito a minha rotina."</p></blockquote><figcaption class="text-right font-bold text-gray-800 mt-4">- Ana C., Jundiaí</figcaption></figure>
                 </div>
             </div>
         </section>
@@ -443,11 +455,11 @@
             </div>
             <div class="p-6 md:p-8 overflow-y-auto">
                 <div id="whatsapp-form-container">
-                    <form id="whatsapp-form" class="space-y-8">
-                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>Dados Pessoais</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-nome" class="block font-medium text-gray-700 mb-1">Nome Completo</label><input type="text" id="wa-nome" name="wa-nome" class="form-input" required></div><div><label for="wa-mae" class="block font-medium text-gray-700 mb-1">Nome da Mãe</label><input type="text" id="wa-mae" name="wa-mae" class="form-input" required></div><div class="md:col-span-2"><label for="wa-nascimento" class="block font-medium text-gray-700 mb-1">Data de Nascimento</label><input type="date" id="wa-nascimento" name="wa-nascimento" class="form-input" required></div></div></fieldset>
-                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" /><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm3 0a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>Documentos & Contato</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-cpf" class="block font-medium text-gray-700 mb-1">CPF</label><input type="text" id="wa-cpf" name="wa-cpf" class="form-input" required></div><div><label for="wa-rg" class="block font-medium text-gray-700 mb-1">RG</label><input type="text" id="wa-rg" name="wa-rg" class="form-input" required></div><div><label for="wa-email" class="block font-medium text-gray-700 mb-1">E-mail</label><input type="email" id="wa-email" name="wa-email" class="form-input" required></div><div><label for="wa-tel1" class="block font-medium text-gray-700 mb-1">Telefone Titular</label><input type="tel" id="wa-tel1" name="wa-tel1" class="form-input" required></div></div></fieldset>
-                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>Endereço de Instalação</legend><div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4"><div><label for="wa-cep" class="block font-medium text-gray-700 mb-1">CEP</label><input type="text" id="wa-cep" name="wa-cep" class="form-input" required></div><div class="md:col-span-2"><label for="wa-rua" class="block font-medium text-gray-700 mb-1">Rua</label><input type="text" id="wa-rua" name="wa-rua" class="form-input" required></div><div><label for="wa-numero" class="block font-medium text-gray-700 mb-1">Número</label><input type="text" id="wa-numero" name="wa-numero" class="form-input" required></div><div><label for="wa-bairro" class="block font-medium text-gray-700 mb-1">Bairro</label><input type="text" id="wa-bairro" name="wa-bairro" class="form-input" required></div><div><label for="wa-cidade" class="block font-medium text-gray-700 mb-1">Cidade</label><input type="text" id="wa-cidade" name="wa-cidade" class="form-input" required></div></div></fieldset>
-                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>Agendamento da Instalação</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2"><label for="periodo-manha" class="form-radio-label"><input type="radio" id="periodo-manha" name="installation_period" value="MANHÃ - 8 as 12h" class="hidden" required>Manhã (8h às 12h)</label><label for="periodo-tarde" class="form-radio-label"><input type="radio" id="periodo-tarde" name="installation_period" value="TARDE - 14 as 18h" class="hidden">Tarde (14h às 18h)</label></div></fieldset>
+                    <form id="whatsapp-form" class="space-y-8" novalidate>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>Dados Pessoais</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-nome" class="block font-medium text-gray-700 mb-1">Nome Completo</label><input type="text" id="wa-nome" name="wa-nome" class="form-input" required><div class="error-message"></div></div><div><label for="wa-mae" class="block font-medium text-gray-700 mb-1">Nome da Mãe</label><input type="text" id="wa-mae" name="wa-mae" class="form-input" required><div class="error-message"></div></div><div class="md:col-span-2"><label for="wa-nascimento" class="block font-medium text-gray-700 mb-1">Data de Nascimento</label><input type="date" id="wa-nascimento" name="wa-nascimento" class="form-input" required><div class="error-message"></div></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" /><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm3 0a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>Documentos & Contato</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"><div><label for="wa-cpf" class="block font-medium text-gray-700 mb-1">CPF</label><input type="text" id="wa-cpf" name="wa-cpf" class="form-input" required placeholder="000.000.000-00"><div class="error-message"></div></div><div><label for="wa-rg" class="block font-medium text-gray-700 mb-1">RG</label><input type="text" id="wa-rg" name="wa-rg" class="form-input" required><div class="error-message"></div></div><div><label for="wa-email" class="block font-medium text-gray-700 mb-1">E-mail</label><input type="email" id="wa-email" name="wa-email" class="form-input" required><div class="error-message"></div></div><div><label for="wa-tel1" class="block font-medium text-gray-700 mb-1">Telefone Titular</label><input type="tel" id="wa-tel1" name="wa-tel1" class="form-input" required placeholder="(00) 90000-0000"><div class="error-message"></div></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>Endereço de Instalação</legend><div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4"><div><label for="wa-cep" class="block font-medium text-gray-700 mb-1">CEP</label><input type="text" id="wa-cep" name="wa-cep" class="form-input" required placeholder="00000-000"><div class="error-message"></div></div><div class="md:col-span-2"><label for="wa-rua" class="block font-medium text-gray-700 mb-1">Rua</label><input type="text" id="wa-rua" name="wa-rua" class="form-input" required><div class="error-message"></div></div><div><label for="wa-numero" class="block font-medium text-gray-700 mb-1">Número</label><input type="text" id="wa-numero" name="wa-numero" class="form-input" required><div class="error-message"></div></div><div><label for="wa-bairro" class="block font-medium text-gray-700 mb-1">Bairro</label><input type="text" id="wa-bairro" name="wa-bairro" class="form-input" required><div class="error-message"></div></div><div><label for="wa-cidade" class="block font-medium text-gray-700 mb-1">Cidade</label><input type="text" id="wa-cidade" name="wa-cidade" class="form-input" required><div class="error-message"></div></div></div></fieldset>
+                        <fieldset><legend class="font-semibold text-lg text-gray-800 border-b pb-2 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>Agendamento da Instalação</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2"><label for="periodo-manha" class="form-radio-label"><input type="radio" id="periodo-manha" name="installation_period" value="MANHÃ - 8 as 12h" class="hidden" required>Manhã (8h às 12h)</label><label for="periodo-tarde" class="form-radio-label"><input type="radio" id="periodo-tarde" name="installation_period" value="TARDE - 14 as 18h" class="hidden">Tarde (14h às 18h)</label></div><div id="radio-error-message" class="error-message"></div></fieldset>
                         <div class="pt-6 text-right"><button type="submit" id="submit-whatsapp-btn" class="cta-button">Continuar Cadastro</button></div>
                     </form>
                 </div>
@@ -498,10 +510,14 @@
             whatsappForm: document.getElementById('whatsapp-form'),
             whatsappSendLink: document.getElementById('whatsapp-send-link'),
             radioLabels: document.querySelectorAll('.form-radio-label'),
-            promoCarousel: document.getElementById('promo-carousel')
+            promoCarousel: document.getElementById('promo-carousel'),
+            cepInput: document.getElementById('wa-cep'),
+            cpfInput: document.getElementById('wa-cpf'),
+            telInput: document.getElementById('wa-tel1')
         };
 
-        // Função para alternar o menu mobile
+        // --- FUNÇÕES DE UTILIDADE ---
+
         function toggleMobileMenu() {
             const isExpanded = NODES.menuBtn.getAttribute('aria-expanded') === 'true';
             NODES.menuBtn.setAttribute('aria-expanded', !isExpanded);
@@ -510,7 +526,6 @@
             NODES.menuIconClose.classList.toggle('hidden');
         }
 
-        // Animações de fade-in ao rolar
         function initScrollAnimation() {
             if (!('IntersectionObserver' in window)) return;
             const observer = new IntersectionObserver((entries) => {
@@ -530,12 +545,33 @@
                 errorElement.classList.remove('hidden');
             }
         }
+        
+        // --- LÓGICA DO RECOMENDADOR COM GEMINI API ---
 
-        // Simulação de recomendação de planos
+        /**
+         * Coleta todos os planos disponíveis a partir do template HTML.
+         * @returns {Array} Uma lista de objetos, cada um representando um plano.
+         */
+        function getAllPlansFromDOM() {
+            const planNodes = NODES.allPlansStorage.content.querySelectorAll('.plan-card');
+            const plans = [];
+            planNodes.forEach(node => {
+                const features = Array.from(node.querySelectorAll('ul li')).map(li => li.textContent.trim());
+                plans.push({
+                    id: node.id,
+                    name: node.querySelector('h3').textContent.trim(),
+                    description: node.querySelector('p').textContent.trim(),
+                    price: node.dataset.price,
+                    features: features
+                });
+            });
+            return plans;
+        }
+
         async function handleRecommendation() {
             const userInput = NODES.needsInput.value.trim();
             if (!userInput) {
-                displayUserError("Por favor, descreva sua necessidade.", NODES.recommenderError);
+                displayUserError("Por favor, descreva sua necessidade para a IA.", NODES.recommenderError);
                 return;
             }
 
@@ -543,20 +579,78 @@
             NODES.recommendLoader.classList.remove('hidden');
             NODES.recommendBtn.disabled = true;
 
+            const allPlans = getAllPlansFromDOM();
+
+            // Constrói o prompt para a API Gemini
+            const prompt = `
+                Você é um assistente especialista em vendas de planos de internet da empresa Piel Telecom.
+                Sua tarefa é analisar a necessidade de um cliente e recomendar os 3 melhores planos de internet para ele, com base na lista de planos disponíveis.
+
+                **Necessidade do Cliente:**
+                "${userInput}"
+
+                **Lista de Planos Disponíveis (formato JSON):**
+                ${JSON.stringify(allPlans, null, 2)}
+
+                **Instruções:**
+                1.  Analise a necessidade do cliente e compare com os detalhes de cada plano (descrição, velocidade, preço, características).
+                2.  Selecione os 3 planos mais adequados. Dê prioridade aos planos que melhor resolvem a necessidade principal do cliente (ex: jogos, trabalho, streaming).
+                3.  Para cada plano recomendado, escreva uma justificativa curta e amigável (em português do Brasil) explicando por que aquele plano é uma boa escolha para o cliente.
+                4.  Retorne sua resposta estritamente no formato JSON especificado no schema. Não inclua nenhuma outra informação ou texto fora do JSON.
+                5.  IMPORTANTE: Assegure que o JSON de saída seja perfeitamente válido. O campo "reason" deve ser uma string única, sem quebras de linha literais (use \\n se for absolutamente necessário) e com aspas duplas devidamente escapadas (\\").
+            `;
+
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "recommendations": {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        "planId": { "type": "STRING" },
+                                        "reason": { "type": "STRING" }
+                                    },
+                                    required: ["planId", "reason"]
+                                }
+                            }
+                        },
+                        required: ["recommendations"]
+                    }
+                }
+            };
+            
+            const apiKey = ""; // Deixado em branco para ser injetado pelo ambiente
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
             try {
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                const mockResult = {
-                    "recommendations": [
-                        { "planId": "plan-600", "reason": "É o plano com melhor custo-benefício para streaming em 4K e múltiplos dispositivos." },
-                        { "planId": "plan-1000-gamer", "reason": "Ideal se você joga online e precisa da menor latência (ping) para competir." },
-                        { "planId": "plan-1000-homeoffice", "reason": "Perfeito para quem trabalha de casa e precisa de máxima estabilidade e velocidade de upload." }
-                    ]
-                };
-                renderRecommendations(mockResult);
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0) {
+                    const jsonText = result.candidates[0].content.parts[0].text;
+                    const parsedResult = JSON.parse(jsonText);
+                    renderRecommendations(parsedResult);
+                } else {
+                    throw new Error("A resposta da IA está vazia ou em formato inesperado.");
+                }
 
             } catch (error) {
-                console.error("Falha ao obter recomendação:", error);
-                displayUserError("Desculpe, não consegui gerar uma recomendação. Tente novamente.", NODES.recommenderError);
+                console.error("Falha ao obter recomendação da API Gemini:", error);
+                displayUserError("Desculpe, a IA não conseguiu gerar uma recomendação. Tente ser mais descritivo ou tente novamente mais tarde.", NODES.recommenderError);
             } finally {
                 NODES.recommendLoader.classList.add('hidden');
                 NODES.recommendBtn.disabled = false;
@@ -570,6 +664,11 @@
             }
             
             NODES.recommendedGrid.innerHTML = ''; 
+
+            if (!result.recommendations || result.recommendations.length === 0) {
+                 displayUserError("Não foram encontradas recomendações. Tente novamente.", NODES.recommenderError);
+                 return;
+            }
 
             result.recommendations.forEach(rec => {
                 const originalCard = NODES.allPlansStorage.content.getElementById(rec.planId);
@@ -601,6 +700,8 @@
             NODES.recommendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
+        // --- LÓGICA DO MODAL E FORMULÁRIO ---
+
         function openCheckoutModal(e) {
             const button = e.target.closest('.contratar-btn');
             if (!button) return;
@@ -613,11 +714,13 @@
             NODES.whatsappForm.dataset.price = card.dataset.price;
 
             NODES.whatsappForm.reset();
+            clearFormErrors();
             NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
             NODES.whatsappFormContainer.classList.remove('hidden');
             NODES.whatsappSuccessContainer.classList.add('hidden');
             NODES.checkoutModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            NODES.checkoutModal.focus(); // Foco no modal para acessibilidade
         }
 
         function closeCheckoutModal() {
@@ -625,8 +728,80 @@
             document.body.style.overflow = 'auto';
         }
 
-        function handleWhatsappSubmit(e) {
+        function handleRadioChange(event) {
+            const currentLabel = event.currentTarget;
+            NODES.radioLabels.forEach(label => {
+                label.classList.remove('is-checked');
+            });
+            currentLabel.classList.add('is-checked');
+            document.getElementById('radio-error-message').textContent = ''; // Limpa o erro ao selecionar
+        }
+        
+        // --- VALIDAÇÃO E MÁSCARAS DE FORMULÁRIO ---
+
+        function applyInputMask(input, maskFunction) {
+            input.addEventListener('input', (e) => {
+                e.target.value = maskFunction(e.target.value);
+            });
+        }
+
+        const maskCPF = value => value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        const maskTel = value => value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{4})\d+?$/, '$1');
+        const maskCEP = value => value.replace(/\D/g, '').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{3})\d+?$/, '$1');
+
+        function validateField(input) {
+            let isValid = input.checkValidity();
+            const errorContainer = input.nextElementSibling;
+            
+            if (input.name === 'wa-cpf') {
+                isValid = isValid && /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(input.value);
+            }
+            if (input.name === 'wa-tel1') {
+                isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
+            }
+             if (input.name === 'wa-cep') {
+                isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
+            }
+
+            if (!isValid) {
+                input.classList.add('is-invalid');
+                errorContainer.textContent = input.validationMessage || 'Campo inválido.';
+            } else {
+                input.classList.remove('is-invalid');
+                errorContainer.textContent = '';
+            }
+            return isValid;
+        }
+
+        function clearFormErrors() {
+             NODES.whatsappForm.querySelectorAll('.form-input').forEach(input => {
+                input.classList.remove('is-invalid');
+                if (input.nextElementSibling && input.nextElementSibling.classList.contains('error-message')) {
+                    input.nextElementSibling.textContent = '';
+                }
+            });
+            document.getElementById('radio-error-message').textContent = '';
+        }
+
+        async function handleWhatsappSubmit(e) {
             e.preventDefault();
+            clearFormErrors();
+
+            let isFormValid = true;
+            NODES.whatsappForm.querySelectorAll('input[required]').forEach(input => {
+                if (!validateField(input)) {
+                    isFormValid = false;
+                }
+            });
+            
+            const radioChecked = NODES.whatsappForm.querySelector('input[name="installation_period"]:checked');
+            if (!radioChecked) {
+                document.getElementById('radio-error-message').textContent = 'Por favor, selecione um período.';
+                isFormValid = false;
+            }
+
+            if (!isFormValid) return;
+
             const formData = new FormData(NODES.whatsappForm);
             const data = Object.fromEntries(formData.entries());
             const { plan, price } = NODES.whatsappForm.dataset;
@@ -640,22 +815,34 @@
             NODES.whatsappSuccessContainer.classList.remove('hidden');
         }
         
-        function handleRadioChange(event) {
-            const currentLabel = event.currentTarget;
-            NODES.radioLabels.forEach(label => {
-                label.classList.remove('is-checked');
-            });
-            currentLabel.classList.add('is-checked');
+        async function fetchAddressFromCEP(cep) {
+            const cleanCep = cep.replace(/\D/g, '');
+            if (cleanCep.length !== 8) return;
+
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+                if (!response.ok) throw new Error('CEP não encontrado');
+                const address = await response.json();
+                if (address.erro) throw new Error('CEP inválido');
+
+                document.getElementById('wa-rua').value = address.logradouro || '';
+                document.getElementById('wa-bairro').value = address.bairro || '';
+                document.getElementById('wa-cidade').value = address.localidade || '';
+            } catch (error) {
+                console.error("Erro ao buscar CEP:", error);
+                // Opcional: mostrar erro para o usuário
+            }
         }
 
+
         // --- INICIALIZAÇÃO E EVENT LISTENERS ---
+        
         initScrollAnimation();
 
-        // Inicializa o carrossel de promoções
         if (NODES.promoCarousel) {
             new Flickity(NODES.promoCarousel, {
                 wrapAround: true, 
-                autoPlay: false, // Sem autoplay
+                autoPlay: false,
                 pageDots: true, 
                 cellAlign: 'left', 
                 contain: true,
@@ -677,6 +864,12 @@
                 closeCheckoutModal();
             }
         });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !NODES.checkoutModal.classList.contains('hidden')) {
+                closeCheckoutModal();
+            }
+        });
         
         document.addEventListener('click', openCheckoutModal);
 
@@ -685,6 +878,14 @@
         NODES.radioLabels.forEach(label => {
             label.addEventListener('click', handleRadioChange);
         });
+
+        // Aplicando máscaras
+        applyInputMask(NODES.cpfInput, maskCPF);
+        applyInputMask(NODES.telInput, maskTel);
+        applyInputMask(NODES.cepInput, maskCEP);
+        
+        // Evento para buscar CEP
+        NODES.cepInput.addEventListener('blur', (e) => fetchAddressFromCEP(e.target.value));
     });
     </script>
 </body>
