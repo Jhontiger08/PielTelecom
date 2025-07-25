@@ -213,6 +213,22 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
+
+        /* Estilo customizado para o scroll da lista de cidades */
+        #city-list-container::-webkit-scrollbar {
+          width: 8px;
+        }
+        #city-list-container::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 10px;
+        }
+        #city-list-container::-webkit-scrollbar-thumb {
+          background: #d1d5db; /* gray-300 */
+          border-radius: 10px;
+        }
+        #city-list-container::-webkit-scrollbar-thumb:hover {
+          background: #9ca3af; /* gray-400 */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -319,7 +335,7 @@
                                     <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$79</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
                                     <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 200 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 100 Mbps</li></ul></div>
                                     <div class="gemini-reason-container"></div>
-                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 200M+">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
+                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
                                 </div>
                             </div>
 
@@ -333,7 +349,7 @@
                                     <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$99</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
                                     <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 600 Mbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 300 Mbps</li></ul></div>
                                     <div class="gemini-reason-container"></div>
-                                    <button class="contratar-btn w-full bg-[#e5a10d] hover:bg-[#d4910c] text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 600M+">Quero este! <span class="arrow-icon">&rarr;</span></button>
+                                    <button class="contratar-btn w-full bg-[#e5a10d] hover:bg-[#d4910c] text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto">Quero este! <span class="arrow-icon">&rarr;</span></button>
                                 </div>
                             </div>
 
@@ -346,7 +362,7 @@
                                     <div class="my-4 text-gray-800"><span class="text-sm">Por apenas</span><p class="flex items-baseline"><span class="text-5xl font-extrabold">R$119</span><span class="text-2xl font-bold">,99</span><span class="font-medium ml-1">/mês</span></p></div>
                                     <div class="flex-grow"><ul class="space-y-3 mb-8 text-left"><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Download: 1 Gbps</li><li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Upload: 500 Mbps</li></ul></div>
                                     <div class="gemini-reason-container"></div>
-                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto" data-plan="Piel Telecom Fibra 1 Giga+">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
+                                    <button class="contratar-btn w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 mt-auto">Contratar Agora <span class="arrow-icon">&rarr;</span></button>
                                 </div>
                             </div>
                         </div>
@@ -441,6 +457,47 @@
         </div>
     </footer>
 
+    <!-- ======================================================= -->
+    <!-- INÍCIO: MODAL DE FILTRAGEM DE CIDADE                    -->
+    <!-- ======================================================= -->
+    <div id="city-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="city-modal-title">
+        <div id="city-modal-panel" class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col transform transition-all opacity-0 -translate-y-4">
+            <!-- Cabeçalho do Modal -->
+            <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                <h2 id="city-modal-title" class="text-xl font-bold text-gray-900">Consulte a disponibilidade</h2>
+                <button id="close-city-modal-btn" aria-label="Fechar modal" class="text-gray-400 hover:text-red-600 transition-colors p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Conteúdo do Modal -->
+            <div class="p-6 overflow-y-auto">
+                <p class="text-gray-600 mb-4">Primeiro, digite o nome da sua cidade para verificar se nossos serviços estão disponíveis na sua região.</p>
+                
+                <div class="relative">
+                    <input type="text" id="city-search-input" placeholder="Digite sua cidade..." class="form-input !pl-10 peer">
+                    <svg class="w-5 h-5 text-gray-400 absolute top-1/2 left-3 -translate-y-1/2 peer-focus:text-brand-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+
+                <p id="city-list-error" class="text-center text-red-500 my-4 hidden">Nenhuma cidade encontrada.</p>
+                
+                <!-- Lista de Cidades (será preenchida via JS) -->
+                <div id="city-list-container" class="mt-4 border border-gray-200 rounded-lg max-h-64 overflow-y-auto">
+                    <!-- Cidades filtradas aparecerão aqui -->
+                </div>
+            </div>
+
+            <!-- Rodapé do Modal -->
+            <div class="p-5 bg-gray-50 border-t border-gray-200 text-right rounded-b-xl">
+                <button id="confirm-city-btn" class="cta-button w-full sm:w-auto" disabled>
+                    Confirmar Cidade
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL DE CHECKOUT -->
     <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[95vh] flex flex-col">
@@ -481,19 +538,33 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Configurações globais
+        // =======================================================
+        // CONFIGURAÇÕES GLOBAIS E MAPEAMENTO DO DOM
+        // =======================================================
         const CONFIG = {
             whatsappNumber: '5513991830277'
         };
 
-        // Mapeamento dos elementos do DOM
+        // !!! IMPORTANTE !!!
+        // Para que a IA funcione fora do ambiente Gemini, você precisa de uma API Key.
+        // 1. Acesse https://aistudio.google.com/app/apikey
+        // 2. Crie uma nova API Key.
+        // 3. Cole a chave criada na constante abaixo.
+        const USER_API_KEY = "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0"; // <--- SUBSTITUIR PELA SUA CHAVE
+
         const NODES = {
+            // Navegação e Menu
             menuBtn: document.getElementById('menu-btn'),
             mobileMenu: document.getElementById('mobile-menu'),
             menuIconOpen: document.getElementById('menu-icon-open'),
             menuIconClose: document.getElementById('menu-icon-close'),
             mobileMenuLinks: document.querySelectorAll('.mobile-menu-link'),
+            
+            // Elementos gerais e animações
             fadeInElements: document.querySelectorAll('.fade-in-element'),
+            promoCarousel: document.getElementById('promo-carousel'),
+
+            // Recomendador IA
             recommendBtn: document.getElementById('recommend-btn'),
             needsInput: document.getElementById('needs-input'),
             recommendLoader: document.getElementById('recommend-loader'),
@@ -502,21 +573,37 @@
             recommendedGrid: document.getElementById('recommended-plans-grid'),
             allPlansContainer: document.getElementById('all-plans-container'),
             allPlansStorage: document.getElementById('all-plans-storage'),
+
+            // Modal de Cidade
+            cityModal: document.getElementById('city-modal'),
+            cityModalPanel: document.getElementById('city-modal-panel'),
+            closeCityModalBtn: document.getElementById('close-city-modal-btn'),
+            citySearchInput: document.getElementById('city-search-input'),
+            cityListContainer: document.getElementById('city-list-container'),
+            cityListError: document.getElementById('city-list-error'),
+            confirmCityBtn: document.getElementById('confirm-city-btn'),
+
+            // Modal de Checkout
             checkoutModal: document.getElementById('checkout-modal'),
             closeModalBtn: document.getElementById('close-modal-btn'),
             selectedPlanNameSpan: document.getElementById('selected-plan-name'),
+            
+            // Formulário WhatsApp
             whatsappFormContainer: document.getElementById('whatsapp-form-container'),
             whatsappSuccessContainer: document.getElementById('whatsapp-success'),
             whatsappForm: document.getElementById('whatsapp-form'),
             whatsappSendLink: document.getElementById('whatsapp-send-link'),
             radioLabels: document.querySelectorAll('.form-radio-label'),
-            promoCarousel: document.getElementById('promo-carousel'),
             cepInput: document.getElementById('wa-cep'),
             cpfInput: document.getElementById('wa-cpf'),
             telInput: document.getElementById('wa-tel1')
         };
+        
+        let selectedPlanInfo = {};
 
-        // --- FUNÇÕES DE UTILIDADE ---
+        // =======================================================
+        // FUNÇÕES DE UTILIDADE GERAL
+        // =======================================================
 
         function toggleMobileMenu() {
             const isExpanded = NODES.menuBtn.getAttribute('aria-expanded') === 'true';
@@ -546,19 +633,10 @@
             }
         }
         
-        // --- LÓGICA DO RECOMENDADOR COM GEMINI API ---
+        // =======================================================
+        // LÓGICA DO RECOMENDADOR COM GEMINI API
+        // =======================================================
 
-        // !!! IMPORTANTE !!!
-        // Para que a IA funcione fora do ambiente Gemini, você precisa de uma API Key.
-        // 1. Acesse https://aistudio.google.com/app/apikey
-        // 2. Crie uma nova API Key.
-        // 3. Cole a chave criada na constante abaixo.
-        const USER_API_KEY = "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0"; // <--- SUBSTITUIR PELA SUA CHAVE
-
-        /**
-         * Coleta todos os planos disponíveis a partir do template HTML.
-         * @returns {Array} Uma lista de objetos, cada um representando um plano.
-         */
         function getAllPlansFromDOM() {
             const planNodes = NODES.allPlansStorage.content.querySelectorAll('.plan-card');
             const plans = [];
@@ -582,7 +660,6 @@
                 return;
             }
 
-            // Verifica se a API Key foi inserida
             if (USER_API_KEY === "COLE_SUA_API_KEY_AQUI" || !USER_API_KEY) {
                 displayUserError("API Key do Google não configurada. Por favor, adicione sua chave no código para a IA funcionar.", NODES.recommenderError);
                 return;
@@ -593,77 +670,31 @@
             NODES.recommendBtn.disabled = true;
 
             const allPlans = getAllPlansFromDOM();
-
-            // Constrói o prompt para a API Gemini
-            const prompt = `
-                Você é um assistente especialista em vendas de planos de internet da empresa Piel Telecom.
-                Sua tarefa é analisar a necessidade de um cliente e recomendar os 3 melhores planos de internet para ele, com base na lista de planos disponíveis.
-
-                **Necessidade do Cliente:**
-                "${userInput}"
-
-                **Lista de Planos Disponíveis (formato JSON):**
-                ${JSON.stringify(allPlans, null, 2)}
-
-                **Instruções:**
-                1.  Analise a necessidade do cliente e compare com os detalhes de cada plano (descrição, velocidade, preço, características).
-                2.  Selecione os 3 planos mais adequados. Dê prioridade aos planos que melhor resolvem a necessidade principal do cliente (ex: jogos, trabalho, streaming).
-                3.  Para cada plano recomendado, escreva uma justificativa curta e amigável (em português do Brasil) explicando por que aquele plano é uma boa escolha para o cliente.
-                4.  Retorne sua resposta estritamente no formato JSON especificado no schema. Não inclua nenhuma outra informação ou texto fora do JSON.
-                5.  IMPORTANTE: Assegure que o JSON de saída seja perfeitamente válido. O campo "reason" deve ser uma string única, sem quebras de linha literais (use \\n se for absolutamente necessário) e com aspas duplas devidamente escapadas (\\").
-            `;
+            const prompt = `Você é um assistente especialista em vendas de planos de internet da empresa Piel Telecom. Sua tarefa é analisar a necessidade de um cliente e recomendar os 3 melhores planos de internet para ele, com base na lista de planos disponíveis. **Necessidade do Cliente:** "${userInput}" **Lista de Planos Disponíveis (formato JSON):** ${JSON.stringify(allPlans, null, 2)} **Instruções:** 1. Analise a necessidade do cliente e compare com os detalhes de cada plano. 2. Selecione os 3 planos mais adequados. 3. Para cada plano recomendado, escreva uma justificativa curta e amigável (em português do Brasil). 4. Retorne sua resposta estritamente no formato JSON especificado no schema. Não inclua nenhuma outra informação ou texto fora do JSON. 5. IMPORTANTE: Assegure que o JSON de saída seja perfeitamente válido. O campo "reason" deve ser uma string única, sem quebras de linha literais e com aspas duplas devidamente escapadas (\\").`;
 
             const payload = {
                 contents: [{ role: "user", parts: [{ text: prompt }] }],
                 generationConfig: {
                     responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "OBJECT",
-                        properties: {
-                            "recommendations": {
-                                type: "ARRAY",
-                                items: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "planId": { "type": "STRING" },
-                                        "reason": { "type": "STRING" }
-                                    },
-                                    required: ["planId", "reason"]
-                                }
-                            }
-                        },
-                        required: ["recommendations"]
-                    }
+                    responseSchema: { type: "OBJECT", properties: { "recommendations": { type: "ARRAY", items: { type: "OBJECT", properties: { "planId": { "type": "STRING" }, "reason": { "type": "STRING" } }, required: ["planId", "reason"] } } }, required: ["recommendations"] }
                 }
             };
             
-            const apiKey = USER_API_KEY;
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
 
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
-                }
-
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`API Error: ${response.status} ${response.statusText}`);
                 const result = await response.json();
-
                 if (result.candidates && result.candidates.length > 0) {
                     const jsonText = result.candidates[0].content.parts[0].text;
-                    const parsedResult = JSON.parse(jsonText);
-                    renderRecommendations(parsedResult);
+                    renderRecommendations(JSON.parse(jsonText));
                 } else {
                     throw new Error("A resposta da IA está vazia ou em formato inesperado.");
                 }
-
             } catch (error) {
                 console.error("Falha ao obter recomendação da API Gemini:", error);
-                displayUserError("Desculpe, a IA não conseguiu gerar uma recomendação. Tente ser mais descritivo ou tente novamente mais tarde.", NODES.recommenderError);
+                displayUserError("Desculpe, a IA não conseguiu gerar uma recomendação. Tente novamente.", NODES.recommenderError);
             } finally {
                 NODES.recommendLoader.classList.add('hidden');
                 NODES.recommendBtn.disabled = false;
@@ -672,14 +703,12 @@
 
         function renderRecommendations(result) {
             const flkty = Flickity.data(NODES.recommendedGrid);
-            if (flkty) {
-                flkty.destroy();
-            }
+            if (flkty) flkty.destroy();
             
             NODES.recommendedGrid.innerHTML = ''; 
 
             if (!result.recommendations || result.recommendations.length === 0) {
-                 displayUserError("Não foram encontradas recomendações. Tente novamente.", NODES.recommenderError);
+                 displayUserError("Não foram encontradas recomendações.", NODES.recommenderError);
                  return;
             }
 
@@ -699,32 +728,73 @@
                 }
             });
             
-            new Flickity(NODES.recommendedGrid, { 
-                wrapAround: true, 
-                pageDots: true, 
-                cellAlign: 'left', 
-                contain: true, 
-                imagesLoaded: true,
-                autoPlay: false 
-            });
+            new Flickity(NODES.recommendedGrid, { wrapAround: true, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true, autoPlay: false });
             
             NODES.recommendedContainer.classList.remove('hidden');
             NODES.allPlansContainer.classList.add('hidden');
             NODES.recommendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
-        // --- LÓGICA DO MODAL E FORMULÁRIO ---
+        // =======================================================
+        // LÓGICA DO MODAL DE CIDADE
+        // =======================================================
+        const citiesString = "Aguaí, Águas de Santa Bárbara, Agudos, Alumínio, Americana, Américo Brasiliense, Amparo, Araçariguama, Arandu, Araraquara, Araras, Areiópolis, Artur Nogueira, Atibaia, Avaí, Avaré, Bady Bassitt, Barra Bonita, Barretos, Bauru, Bebedouro, Biritiba-Mirim, Boa Esperança do Sul, Bocaina, Bom Jesus dos Perdões, Borborema, Borebi, Botucatu, Bragança Paulista, Cabreúva, Caçapava, Cafelândia, Caieiras, Campinas, Campo Limpo Paulista, Cândido Rodrigues, Capivari, Casa Branca, Cedral, Cerqueira César, Colina, Conchal, Cordeirópolis, Cosmópolis, Cravinhos, Cristais Paulista, Cubatão, Descalvado, Dobrada, Dois Córregos, Dourado, Engenheiro Coelho, Estiva Gerbi, Fernando Prestes, Franca, Francisco Morato, Franco da Rocha, Gavião Peixoto, Guaíra, Guapiaçu, Guararema, Guariba, Guarujá, Guatapará, Holambra, Hortolândia, Iaras, Ibaté, Ibitinga, Igaraçu do Tietê, Igaratá, Indaiatuba, Iracemápolis, Itaí, Itajobi, Itaju, Itanhaém, Itápolis, Itapuí, Itatinga, Itirapuã, Itupeva, Jaborandi, Jaboticabal, Jacareí, Jaguariúna, Jarinu, Jaú, Jundiaí, Leme, Lençóis Paulista, Limeira, Lindóia, Lins, Louveira, Macatuba, Mairiporã, Manduri, Matão, Mineiros do Tietê, Mirassol, Mogi das Cruzes, Mogi Guaçu, Mogi Mirim, Mongaguá, Monte Alto, Monte Mor, Motuca, Nazaré Paulista, Nova Europa, Nova Odessa, Óleo, Olímpia, Paranapanema, Pardinho, Patrocínio Paulista, Paulínia, Pederneiras, Pedreira, Peruíbe, Pindorama, Piracaia, Piracicaba, Pirajuí, Pirassununga, Piratininga, Pitangueiras, Porto Ferreira, Praia Grande, Pratânia, Presidente Alves, Rafard, Ribeirão Bonito, Ribeirão Corrente, Ribeirão Preto, Rincão, Salesópolis, Santa Adélia, Santa Bárbara d'Oeste, Santa Branca, Santa Cruz das Palmeiras, Santa Ernestina, Santa Gertrudes, Santa Lúcia, Santa Rita do Passa Quatro, Santa Rosa de Viterbo, Santo Antônio de Posse, Santos, São Bernardo do Campo, São Carlos, São José do Rio Preto, São José dos Campos, São Manuel, São Vicente, Serra Azul, Serra Negra, Sorocaba, Sumaré, Tabatinga, Tambaú, Taquaritinga, Taubaté, Trabiju, Tremembé, Uchoa, Valinhos, Várzea Paulista, Vinhedo, Votorantim";
+        const availableCities = citiesString.split(', ').sort();
 
-        function openCheckoutModal(e) {
-            const button = e.target.closest('.contratar-btn');
-            if (!button) return;
+        const openCityModal = () => {
+            NODES.citySearchInput.value = '';
+            renderCityList(availableCities);
+            NODES.confirmCityBtn.disabled = true;
+            NODES.cityModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                NODES.cityModalPanel.classList.remove('opacity-0', '-translate-y-4');
+            }, 10);
+        };
 
-            const card = button.closest('.plan-card');
-            if (!card) return;
+        const closeCityModal = () => {
+            NODES.cityModalPanel.classList.add('opacity-0', '-translate-y-4');
+            setTimeout(() => {
+                NODES.cityModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        };
 
-            NODES.selectedPlanNameSpan.textContent = card.dataset.plan;
-            NODES.whatsappForm.dataset.plan = card.dataset.plan;
-            NODES.whatsappForm.dataset.price = card.dataset.price;
+        const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        
+        const renderCityList = (cities) => {
+            NODES.cityListContainer.innerHTML = '';
+            NODES.cityListError.classList.toggle('hidden', cities.length > 0);
+            cities.forEach(city => {
+                const cityButton = document.createElement('button');
+                cityButton.className = 'w-full text-left px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-brand-gold transition-colors duration-150';
+                cityButton.textContent = city;
+                cityButton.type = 'button';
+                NODES.cityListContainer.appendChild(cityButton);
+            });
+        };
+        
+        const filterCities = () => {
+            const searchTerm = normalizeText(NODES.citySearchInput.value);
+            const filtered = availableCities.filter(city => normalizeText(city).includes(searchTerm));
+            renderCityList(filtered);
+            validateCitySelection();
+        };
+
+        const validateCitySelection = () => {
+            const currentInput = normalizeText(NODES.citySearchInput.value);
+            const isValid = availableCities.some(city => normalizeText(city) === currentInput);
+            NODES.confirmCityBtn.disabled = !isValid;
+        };
+
+        // =======================================================
+        // LÓGICA DO MODAL DE CHECKOUT E FORMULÁRIO
+        // =======================================================
+
+        function openCheckoutModal(planData) {
+            NODES.selectedPlanNameSpan.textContent = planData.plan;
+            NODES.whatsappForm.dataset.plan = planData.plan;
+            NODES.whatsappForm.dataset.price = planData.price;
 
             NODES.whatsappForm.reset();
             clearFormErrors();
@@ -733,7 +803,7 @@
             NODES.whatsappSuccessContainer.classList.add('hidden');
             NODES.checkoutModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            NODES.checkoutModal.focus(); // Foco no modal para acessibilidade
+            NODES.checkoutModal.focus();
         }
 
         function closeCheckoutModal() {
@@ -743,19 +813,13 @@
 
         function handleRadioChange(event) {
             const currentLabel = event.currentTarget;
-            NODES.radioLabels.forEach(label => {
-                label.classList.remove('is-checked');
-            });
+            NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
             currentLabel.classList.add('is-checked');
-            document.getElementById('radio-error-message').textContent = ''; // Limpa o erro ao selecionar
+            document.getElementById('radio-error-message').textContent = '';
         }
         
-        // --- VALIDAÇÃO E MÁSCARAS DE FORMULÁRIO ---
-
         function applyInputMask(input, maskFunction) {
-            input.addEventListener('input', (e) => {
-                e.target.value = maskFunction(e.target.value);
-            });
+            input.addEventListener('input', (e) => { e.target.value = maskFunction(e.target.value); });
         }
 
         const maskCPF = value => value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
@@ -766,30 +830,19 @@
             let isValid = input.checkValidity();
             const errorContainer = input.nextElementSibling;
             
-            if (input.name === 'wa-cpf') {
-                isValid = isValid && /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(input.value);
-            }
-            if (input.name === 'wa-tel1') {
-                isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
-            }
-             if (input.name === 'wa-cep') {
-                isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
-            }
+            if (input.name === 'wa-cpf') isValid = isValid && /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(input.value);
+            if (input.name === 'wa-tel1') isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
+            if (input.name === 'wa-cep') isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
 
-            if (!isValid) {
-                input.classList.add('is-invalid');
-                errorContainer.textContent = input.validationMessage || 'Campo inválido.';
-            } else {
-                input.classList.remove('is-invalid');
-                errorContainer.textContent = '';
-            }
+            input.classList.toggle('is-invalid', !isValid);
+            errorContainer.textContent = isValid ? '' : (input.validationMessage || 'Campo inválido.');
             return isValid;
         }
 
         function clearFormErrors() {
              NODES.whatsappForm.querySelectorAll('.form-input').forEach(input => {
                 input.classList.remove('is-invalid');
-                if (input.nextElementSibling && input.nextElementSibling.classList.contains('error-message')) {
+                if (input.nextElementSibling?.classList.contains('error-message')) {
                     input.nextElementSibling.textContent = '';
                 }
             });
@@ -798,14 +851,7 @@
 
         async function handleWhatsappSubmit(e) {
             e.preventDefault();
-            clearFormErrors();
-
-            let isFormValid = true;
-            NODES.whatsappForm.querySelectorAll('input[required]').forEach(input => {
-                if (!validateField(input)) {
-                    isFormValid = false;
-                }
-            });
+            let isFormValid = Array.from(NODES.whatsappForm.querySelectorAll('input[required]')).every(validateField);
             
             const radioChecked = NODES.whatsappForm.querySelector('input[name="installation_period"]:checked');
             if (!radioChecked) {
@@ -818,12 +864,9 @@
             const formData = new FormData(NODES.whatsappForm);
             const data = Object.fromEntries(formData.entries());
             const { plan, price } = NODES.whatsappForm.dataset;
-
             const message = `✨ NOVO PEDIDO DE CADASTRO ✨\n-----------------------------------\nPlano Escolhido: *${plan}*\nValor: *${price}*\n-----------------------------------\n🔹 NOME COMPLETO: ${data['wa-nome']}\n🔹 NOME DA MÃE: ${data['wa-mae']}\n🔹 DATA DE NASCIMENTO: ${data['wa-nascimento']}\n🔹 CPF: ${data['wa-cpf']}\n🔹 RG: ${data['wa-rg']}\n🔹 E-MAIL: ${data['wa-email']}\n🔹 TELEFONE TITULAR: ${data['wa-tel1']}\n🔹 ENDEREÇO: Rua ${data['wa-rua']}, Nº ${data['wa-numero']}, Bairro ${data['wa-bairro']}, Cidade ${data['wa-cidade']}, CEP ${data['wa-cep']}\n🔹 INSTALAÇÃO: ${data.installation_period}`;
 
-            const encodedMessage = encodeURIComponent(message);
-            NODES.whatsappSendLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
-            
+            NODES.whatsappSendLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
             NODES.whatsappFormContainer.classList.add('hidden');
             NODES.whatsappSuccessContainer.classList.remove('hidden');
         }
@@ -831,36 +874,27 @@
         async function fetchAddressFromCEP(cep) {
             const cleanCep = cep.replace(/\D/g, '');
             if (cleanCep.length !== 8) return;
-
             try {
                 const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
                 if (!response.ok) throw new Error('CEP não encontrado');
                 const address = await response.json();
                 if (address.erro) throw new Error('CEP inválido');
-
                 document.getElementById('wa-rua').value = address.logradouro || '';
                 document.getElementById('wa-bairro').value = address.bairro || '';
                 document.getElementById('wa-cidade').value = address.localidade || '';
             } catch (error) {
                 console.error("Erro ao buscar CEP:", error);
-                // Opcional: mostrar erro para o usuário
             }
         }
 
-
-        // --- INICIALIZAÇÃO E EVENT LISTENERS ---
+        // =======================================================
+        // INICIALIZAÇÃO E EVENT LISTENERS GLOBAIS
+        // =======================================================
         
         initScrollAnimation();
 
         if (NODES.promoCarousel) {
-            new Flickity(NODES.promoCarousel, {
-                wrapAround: true, 
-                autoPlay: false,
-                pageDots: true, 
-                cellAlign: 'left', 
-                contain: true,
-                imagesLoaded: true
-            });
+            new Flickity(NODES.promoCarousel, { wrapAround: true, autoPlay: false, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true });
         }
         
         NODES.menuBtn.addEventListener('click', toggleMobileMenu);
@@ -870,27 +904,46 @@
             NODES.recommendBtn.addEventListener('click', handleRecommendation);
         }
         
-        NODES.closeModalBtn.addEventListener('click', closeCheckoutModal);
-        
-        NODES.checkoutModal.addEventListener('click', (e) => {
-            if (e.target === NODES.checkoutModal) {
-                closeCheckoutModal();
+        // Eventos do Modal de Cidade
+        NODES.closeCityModalBtn.addEventListener('click', closeCityModal);
+        NODES.cityModal.addEventListener('click', (e) => { if (e.target === NODES.cityModal) closeCityModal(); });
+        NODES.citySearchInput.addEventListener('input', filterCities);
+        NODES.cityListContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                NODES.citySearchInput.value = e.target.textContent;
+                filterCities();
             }
+        });
+        NODES.confirmCityBtn.addEventListener('click', () => {
+            openCheckoutModal(selectedPlanInfo);
+            closeCityModal();
         });
 
+        // Eventos do Modal de Checkout
+        NODES.closeModalBtn.addEventListener('click', closeCheckoutModal);
+        NODES.checkoutModal.addEventListener('click', (e) => { if (e.target === NODES.checkoutModal) closeCheckoutModal(); });
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !NODES.checkoutModal.classList.contains('hidden')) {
-                closeCheckoutModal();
-            }
+            if (e.key === 'Escape' && !NODES.checkoutModal.classList.contains('hidden')) closeCheckoutModal();
         });
         
-        document.addEventListener('click', openCheckoutModal);
+        // Delegação de evento para os botões "Contratar"
+        document.body.addEventListener('click', (e) => {
+            const contratarBtn = e.target.closest('.contratar-btn');
+            if (contratarBtn) {
+                e.preventDefault();
+                const card = contratarBtn.closest('.plan-card');
+                if (card) {
+                    selectedPlanInfo = { 
+                        plan: card.dataset.plan, 
+                        price: card.dataset.price 
+                    };
+                    openCityModal();
+                }
+            }
+        });
 
         NODES.whatsappForm.addEventListener('submit', handleWhatsappSubmit);
-        
-        NODES.radioLabels.forEach(label => {
-            label.addEventListener('click', handleRadioChange);
-        });
+        NODES.radioLabels.forEach(label => label.addEventListener('click', handleRadioChange));
 
         // Aplicando máscaras
         applyInputMask(NODES.cpfInput, maskCPF);
@@ -903,3 +956,4 @@
     </script>
 </body>
 </html>
+</code-block></immersive-code-contain
