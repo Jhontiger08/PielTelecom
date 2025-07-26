@@ -841,8 +841,10 @@
             if (input.name === 'wa-tel1') isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
             if (input.name === 'wa-cep') isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
 
-            input.classList.toggle('is-invalid', !isValid);
-            errorContainer.textContent = isValid ? '' : (input.validationMessage || 'Campo inválido.');
+            if (errorContainer) { // Adiciona verificação para garantir que o contêiner de erro existe
+                input.classList.toggle('is-invalid', !isValid);
+                errorContainer.textContent = isValid ? '' : (input.validationMessage || 'Campo inválido.');
+            }
             return isValid;
         }
 
@@ -858,7 +860,9 @@
 
         async function handleWhatsappSubmit(e) {
             e.preventDefault();
-            let isFormValid = Array.from(NODES.whatsappForm.querySelectorAll('input[required]')).every(validateField);
+            clearFormErrors();
+
+            let isFormValid = Array.from(NODES.whatsappForm.querySelectorAll('input[required]:not([type=radio])')).every(validateField);
             
             const radioChecked = NODES.whatsappForm.querySelector('input[name="installation_period"]:checked');
             if (!radioChecked) {
