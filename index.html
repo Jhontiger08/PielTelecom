@@ -1081,7 +1081,7 @@
     
     NODES.cepInput.addEventListener('blur', (e) => fetchAddressFromCEP(e.target.value));
 
-    // =======================================================
+        // =======================================================
     // INÍCIO: CÓDIGO DO JARVIS - IA DE CONVERSAÇÃO (VERSÃO FINAL APRIMORADA)
     // =======================================================
     
@@ -1099,7 +1099,6 @@
     const userId = "site-user-" + Math.random().toString(36).substr(2, 9);
 
     const KNOWLEDGE_BASE = {
-        numero_whatsapp_vendas: '5513991830277', // Número do site para receber a notificação
         planos: {
             "Fibra Home 200M+": { preco: "R$79,99", download: "200 Mbps", upload: "100 Mbps", perfil: "Ideal para clientes com orçamento limitado, que moram sozinhos ou em casal, e têm um uso básico da internet (redes sociais, vídeos em HD, e-mails).", argumento: "Este plano é focado no essencial, com uma ótima taxa de upload para essa faixa de preço." },
             "Fibra Home 400M+": { preco: "R$94,99", download: "400 Mbps", upload: "200 Mbps", perfil: "Atende bem uma família, garantindo que todos possam assistir vídeos e navegar sem travar. Essencial para home office com videochamadas.", argumento: "Para quem trabalha em casa, a velocidade de envio de arquivos é crucial. Este plano já oferece 200 Mega de upload, o que deixa suas videochamadas com ótima qualidade." },
@@ -1113,14 +1112,14 @@
             "Fibra Home Socio Ponte Preta ou Guarani": { preco: "Preço Especial", download: "800 Mbps", upload: "400 Mbps", perfil: "Plano exclusivo para sócios torcedores com velocidade e preço especiais.", argumento: "Se o senhor é torcedor de coração, temos um plano exclusivo que, além de ter uma super velocidade, ainda ajuda o seu time." },
             "Fibra Home 600M+ Movel 10G ou 15G": { preco: "Consultar", download: "600 Mbps", upload: "300 Mbps", perfil: "Combo de internet residencial com plano de celular, unificando as contas.", argumento: "Com nosso combo, o senhor leva uma internet de 600 Mega para casa e ainda um plano de celular. Fica tudo em uma conta só e muitas vezes sai mais barato." }
         },
-        cidadesComCobertura: new Set(['aguaí', 'águas de santa bárbara', 'agudos', 'alumínio', 'americana', 'américo brasiliense', 'amparo', 'angatuba', 'araçariguama', 'araçoiaba da serra', 'arandu', 'araraquara', 'araras', 'arealva', 'areiópolis', 'artur nogueira', 'atibaia', 'avaí', 'avaré', 'bady bassitt', 'barra bonita', 'barretos', 'bauru', 'bebedouro', 'biritiba-mirim', 'boa esperança do sul', 'bocaina', 'bofete', 'boituva', 'bom jesus dos perdões', 'borborema', 'borebi', 'botucatu', 'bragança paulista', 'cabreúva', 'caçapava', 'cafelândia', 'caieiras', 'campina do monte alegre', 'campinas', 'campo limpo paulista', 'cândido rodrigues', 'capela do alto', 'capivari', 'casa branca', 'cedral', 'cerqueira césar', 'cerquilho', 'cesário lange', 'colina', 'conchal', 'conchas', 'cordeirópolis', 'cosmópolis', 'cravinhos', 'cristais paulista', 'cubatão', 'descalvado', 'dobrada', 'dois córregos', 'dourado', 'elias fausto', 'engenheiro coelho', 'estiva gerbi', 'fernando prestes', 'franca', 'francisco morato', 'franco da rocha', 'gavião peixoto', 'guaíra', 'guapiaçu', 'guarantã', 'guararema', 'guariba', 'guarujá', 'guatapará', 'holambra', 'hortolândia', 'iaras', 'ibaté', 'ibitinga', 'igaraçu do tietê', 'igaratá', 'indaiatuba', 'iperó', 'iracemápolis', 'itaí', 'itajobi', 'itaju', 'itanhaém', 'itapetininga', 'itápolis', 'itapuí', 'itatinga', 'itirapuã', 'itu', 'itupeva', 'jaborandi', 'jaboticabal', 'jacareí', 'jaguariúna', 'jarinu', 'jaú', 'jumirim', 'jundiaí', 'laranjal paulista', 'leme', 'lençóis paulista', 'limeira', 'lindóia', 'lins', 'louveira', 'macatuba', 'mairiporã', 'manduri', 'matão', 'mineiros do tietê', 'mirassol', 'mogi das cruzes', 'mogi guaçu', 'mogi mirim', 'mongaguá', 'monte alegre do sul', 'monte alto', 'monte mor', 'motuca', 'nazaré paulista', 'nova europa', 'nova odessa', 'óleo', 'olímpia', 'paranapanema', 'pardinho', 'patrocínio paulista', 'paulínia', 'pederneiras', 'pedreira', 'pereiras', 'peruíbe', 'pilar do sul', 'pindorama', 'piracaia', 'piracicaba', 'pirajuí', 'pirassununga', 'piratininga', 'pitangueiras', 'porangaba', 'porto ferreira', 'praia grande', 'pratânia', 'presidente alves', 'quadra', 'rafard', 'ribeirão bonito', 'ribeirão corrente', 'ribeirão preto', 'rincão', 'rio claro', 'rio das pedras', 'salesópolis', 'saltinho', 'salto de pirapora', 'santa adélia', 'santa bárbara d’oeste', 'santa branca', 'santa cruz das palmeiras', 'santa ernestina', 'santa gertrudes', 'santa lúcia', 'santa rita do passa quatro', 'santa rosa de viterbo', 'santo antônio de posse', 'santos', 'são bernardo do campo', 'são carlos', 'são josé do rio preto', 'são josé dos campos', 'são manuel', 'são vicente', 'sarapuí', 'serra azul', 'serra negra', 'sorocaba', 'sumaré', 'tabatinga', 'tambaú', 'taquaritinga', 'tatuí', 'taubaté', 'tietê', 'trabiju', 'tremembé', 'uchoa', 'valinhos', 'várzea paulista', 'vinhedo', 'votorantim'])
-    };
+        cidadesComCobertura: new Set(['aguaí', 'aguai', 'águas de santa bárbara', 'aguas de santa barbara', 'agudos', 'alumínio', 'aluminio', 'americana', 'américo brasiliense', 'americo brasiliense', 'amparo', 'angatuba', 'araçariguama', 'aracariguama', 'araçoiaba da serra', 'aracoiaba da serra', 'arandu', 'araraquara', 'araras', 'arealva', 'areiópolis', 'areiopolis', 'artur nogueira', 'atibaia', 'avaí', 'avai', 'avaré', 'avare', 'bady bassitt', 'barra bonita', 'barretos', 'bauru', 'bebedouro', 'biritiba-mirim', 'boa esperança do sul', 'boa esperanca do sul', 'bocaina', 'bofete', 'boituva', 'bom jesus dos perdões', 'bom jesus dos perdoes', 'borborema', 'borebi', 'botucatu', 'bragança paulista', 'braganca paulista', 'cabreúva', 'cabreuva', 'caçapava', 'cacapava', 'cafelândia', 'cafelandia', 'caieiras', 'campina do monte alegre', 'campinas', 'campo limpo paulista', 'cândido rodrigues', 'candido rodrigues', 'capela do alto', 'capivari', 'casa branca', 'cedral', 'cerqueira césar', 'cerqueira cesar', 'cerquilho', 'cesário lange', 'cesario lange', 'colina', 'conchal', 'conchas', 'cordeirópolis', 'cordeiropolis', 'cosmópolis', 'cosmopolis', 'cravinhos', 'cristais paulista', 'cubatão', 'cubatao', 'descalvado', 'dobrada', 'dois córregos', 'dois corregos', 'dourado', 'elias fausto', 'engenheiro coelho', 'estiva gerbi', 'fernando prestes', 'franca', 'francisco morato', 'franco da rocha', 'gavião peixoto', 'gaviao peixoto', 'guaíra', 'guaira', 'guapiaçu', 'guapiacu', 'guarantã', 'guaranta', 'guararema', 'guariba', 'guarujá', 'guaruja', 'guatapará', 'guatapara', 'holambra', 'hortolândia', 'hortolandia', 'iaras', 'ibaté', 'ibate', 'ibitinga', 'igaraçu do tietê', 'igaracu do tiete', 'igaratá', 'igarata', 'indaiatuba', 'iperó', 'ipero', 'iracemápolis', 'iracemapolis', 'itaí', 'itai', 'itajobi', 'itaju', 'itanhaém', 'itanhaem', 'itapetininga', 'itápolis', 'itapolis', 'itapuí', 'itapui', 'itatinga', 'itirapuã', 'itirapua', 'itu', 'itupeva', 'jaborandi', 'jaboticabal', 'jacareí', 'jacarei', 'jaguariúna', 'jaguariuna', 'jarinu', 'jaú', 'jau', 'jumirim', 'jundiaí', 'jundiai', 'laranjal paulista', 'leme', 'lençóis paulista', 'lencois paulista', 'limeira', 'lindóia', 'lindoia', 'lins', 'louveira', 'macatuba', 'mairiporã', 'mairipora', 'manduri', 'matão', 'matao', 'mineiros do tietê', 'mineiros do tiete', 'mirassol', 'mogi das cruzes', 'mogi guaçu', 'mogi guacu', 'mogi mirim', 'mongaguá', 'mongagua', 'monte alegre do sul', 'monte alto', 'monte mor', 'motuca', 'nazaré paulista', 'nazare paulista', 'nova europa', 'nova odessa', 'óleo', 'oleo', 'olímpia', 'olimpia', 'paranapanema', 'pardinho', 'patrocínio paulista', 'patrocinio paulista', 'paulínia', 'paulinia', 'pederneiras', 'pedreira', 'pereiras', 'peruíbe', 'peruibe', 'pilar do sul', 'pindorama', 'piracaia', 'piracicaba', 'pirajuí', 'pirajui', 'pirassununga', 'piratininga', 'pitangueiras', 'porangaba', 'porto ferreira', 'praia grande', 'pratânia', 'pratania', 'presidente alves', 'quadra', 'rafard', 'ribeirão bonito', 'ribeirao bonito', 'ribeirão corrente', 'ribeirao corrente', 'ribeirão preto', 'ribeirao preto', 'rincão', 'rincao', 'rio claro', 'rio das pedras', 'salesópolis', 'salesopolis', 'saltinho', 'salto de pirapora', 'santa adélia', 'santa adelia', 'santa bárbara d’oeste', 'santa barbara d’oeste', 'santa branca', 'santa cruz das palmeiras', 'santa ernestina', 'santa gertrudes', 'santa lúcia', 'santa lucia', 'santa rita do passa quatro', 'santa rosa de viterbo', 'santo antônio de posse', 'santo antonio de posse', 'santos', 'são bernardo do campo', 'sao bernardo do campo', 'são carlos', 'sao carlos', 'são josé do rio preto', 'sao jose do rio preto', 'são josé dos campos', 'sao jose dos campos', 'são manuel', 'sao manuel', 'são vicente', 'sao vicente', 'sarapuí', 'sarapui', 'serra azul', 'serra negra', 'sorocaba', 'sumaré', 'sumare', 'tabatinga', 'tambaú', 'tambau', 'taquaritinga', 'tatuí', 'tatui', 'taubaté', 'taubate', 'tietê', 'tiete', 'trabiju', 'tremembé', 'tremembe', 'uchoa', 'valinhos', 'várzea paulista', 'varzea paulista', 'vinhedo', 'votorantim'])
+};
 
     const tools = [{
         functionDeclarations: [
             {
                 name: "start_customer_registration",
-                description: "Finaliza o processo de cadastro do cliente após ele ter fornecido todos os dados necessários e confirmado o plano. Esta função envia os dados para o sistema.",
+                description: "Inicia o processo de cadastro do cliente após ele ter fornecido todos os dados necessários e confirmado o plano. Esta função finaliza a coleta de dados e envia para o sistema.",
                 parameters: { type: "OBJECT", properties: { plano: { type: "STRING" }, nome_completo: { type: "STRING" }, nome_mae: { type: "STRING" }, data_nascimento: { type: "STRING" }, cpf: { type: "STRING" }, rg: { type: "STRING" }, email: { type: "STRING" }, rua_numero: { type: "STRING" }, bairro: { type: "STRING" }, cidade: { type: "STRING" }, cep: { type: "STRING" }, periodo_instalacao: { type: "STRING" } }, required: ["plano", "nome_completo", "nome_mae", "data_nascimento", "cpf", "rg", "email", "rua_numero", "bairro", "cidade", "cep", "periodo_instalacao"] }
             },
             {
@@ -1137,11 +1136,6 @@
                 name: "get_plan_details",
                 description: "Busca e retorna os detalhes de um plano de internet específico, como preço, velocidades e perfil de uso.",
                 parameters: { type: "OBJECT", properties: { nome_do_plano: { type: "STRING", description: "O nome do plano a ser consultado, ex: 'Fibra Home 600M+'" } }, required: ["nome_do_plano"] }
-            },
-            {
-                name: "notify_sales_team",
-                description: "Formata os dados de um novo cliente e prepara uma mensagem de WhatsApp para notificar a equipe de vendas.",
-                parameters: { type: "OBJECT", properties: { plano: { type: "STRING" }, nome_completo: { type: "STRING" }, nome_mae: { type: "STRING" }, data_nascimento: { type: "STRING" }, cpf: { type: "STRING" }, rg: { type: "STRING" }, email: { type: "STRING" }, rua_numero: { type: "STRING" }, bairro: { type: "STRING" }, cidade: { type: "STRING" }, cep: { type: "STRING" }, periodo_instalacao: { type: "STRING" } }, required: ["plano", "nome_completo", "cpf", "cidade"] }
             }
         ]
     }];
@@ -1181,29 +1175,6 @@
         start_customer_registration: (data) => {
             console.log("REGISTRATION DATA TO BE SENT TO CRM:", data);
             return { success: true, message: "Cadastro recebido. Um consultor humano irá revisar e confirmar os detalhes." };
-        },
-        notify_sales_team: (data) => {
-            const planDetails = KNOWLEDGE_BASE.planos[data.plano] || { preco: "N/A" };
-            const message = `✨ NOVO LEAD QUALIFICADO (VIA JARVIS) ✨
------------------------------------
-*Plano de Interesse:* ${data.plano}
-*Valor:* ${planDetails.preco}
------------------------------------
-*Nome:* ${data.nome_completo}
-*Mãe:* ${data.nome_mae}
-*Nascimento:* ${data.data_nascimento}
-*CPF:* ${data.cpf}
-*RG:* ${data.rg}
-*E-mail:* ${data.email}
-*Endereço:* ${data.rua_numero}, ${data.bairro}, ${data.cidade} - ${data.cep}
-*Instalação:* ${data.periodo_instalacao}
------------------------------------
-*Cliente aguardando contato para finalização.*`;
-            
-            const whatsappUrl = `https://wa.me/${KNOWLEDGE_BASE.numero_whatsapp_vendas}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            
-            return { success: true, message: "Notificação enviada para a equipe de vendas." };
         }
     };
 
@@ -1330,10 +1301,10 @@
 Persona: Seja sempre extremamente educado, proativo, sofisticado e preciso, como um mordomo tecnológico. Trate o cliente por "Senhor". Sua comunicação deve ser clara e inspirar confiança.
 Fluxo de Conversa:
 1. Saudação e Análise: Comece se apresentando e perguntando sobre a necessidade do cliente para entender o perfil de uso (Família, Gamer, Home Office, etc.).
-2. Recomendação Consultiva: Com base na necessidade, recomende o melhor plano. Use a ferramenta 'get_plan_details' para obter informações específicas e justificar sua recomendação com os argumentos de venda da base de conhecimento (ex: "Por apenas R$5 a mais, o senhor leva 200 Mega a mais...").
+2. Recomendação: Com base na necessidade, recomende o melhor plano. Use a ferramenta 'get_plan_details' para obter informações específicas e justificar sua recomendação com argumentos de venda (ex: custo-benefício, velocidade de upload).
 3. Coleta de Dados: Se o cliente aceitar, inicie a coleta de dados para o cadastro, uma informação por vez (Nome Completo, Nome da Mãe, etc.).
-4. Validação Imediata e Proativa: Assim que o cliente fornecer um CPF ou uma cidade, você DEVE usar a ferramenta correspondente ('validate_cpf' ou 'check_address_coverage') imediatamente na sua próxima ação. Após a ferramenta retornar um resultado válido, você DEVE prosseguir IMEDIATAMENTE para a próxima pergunta do cadastro, sem esperar o cliente dizer 'ok'. Exemplo de fluxo: Cliente envia CPF -> IA chama validate_cpf -> Ferramenta retorna 'válido' -> IA responde "CPF válido, obrigado. Agora, qual o seu RG?". O fluxo deve ser contínuo e sem interrupções.
-5. Finalização e Notificação: Após coletar todos os dados com sucesso, chame a ferramenta 'start_customer_registration' para registrar o cliente. IMEDIATAMENTE APÓS, chame a ferramenta 'notify_sales_team' com os mesmos dados para enviar a notificação para a equipe de vendas. Por fim, informe ao cliente que um consultor humano entrará em contato.
+4. Validação e Verificação Imediata: Assim que o cliente fornecer um CPF ou uma cidade, você DEVE usar a ferramenta correspondente ('validate_cpf' ou 'check_address_coverage') imediatamente na sua próxima ação. Reaja ao resultado da ferramenta de forma natural (ex: "CPF válido, obrigado. Agora, qual o seu RG?" ou "Um momento, Senhor, enquanto verifico a cobertura em sua cidade."). Não espere por confirmação para validar. O fluxo deve ser contínuo.
+5. Finalização: Após coletar todos os dados, chame a ferramenta 'start_customer_registration' para finalizar e informe ao cliente que um consultor humano entrará em contato.
 Regras Importantes:
 - Não invente planos ou preços. Use apenas as informações da sua base de conhecimento através da ferramenta 'get_plan_details'.
 - Se a cidade do cliente não estiver na lista de cobertura, informe-o educadamente e diga que o contato será guardado para futuras expansões. Encerre o fluxo de venda nesse ponto.
@@ -1353,7 +1324,6 @@ Base de Conhecimento de Planos (para consulta via ferramenta): ${planosParaPromp
         if (e.key === 'Enter') sendUserMessage();
     });
 });
-
 
     </script>
 </body>
