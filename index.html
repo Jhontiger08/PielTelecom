@@ -230,6 +230,115 @@
         #city-list-container::-webkit-scrollbar-thumb:hover {
           background: #9ca3af; /* gray-400 */
         }
+
+        /* --- INÍCIO: ESTILOS DO CHAT DO JARVIS --- */
+        #jarvis-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        #jarvis-chat-button {
+            width: 60px;
+            height: 60px;
+            background-color: var(--brand-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        #jarvis-chat-button:hover {
+            transform: scale(1.1);
+            background-color: var(--brand-gold-dark);
+        }
+        #jarvis-chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 90vw;
+            max-width: 400px;
+            height: 70vh;
+            max-height: 600px;
+            background-color: #f3f4f6;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: bottom right;
+            pointer-events: none;
+        }
+        #jarvis-chat-container.is-open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #jarvis-chat-log {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        #jarvis-chat-log::-webkit-scrollbar {
+            width: 6px;
+        }
+        #jarvis-chat-log::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+        #jarvis-chat-log::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 6px;
+        }
+        .jarvis-message, .user-message {
+            display: flex;
+            margin-bottom: 1rem;
+            max-width: 85%;
+        }
+        .user-message {
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
+        .message-bubble {
+            padding: 0.75rem 1rem;
+            border-radius: 1.25rem;
+            line-height: 1.5;
+        }
+        .jarvis-message .message-bubble {
+            background-color: white;
+            color: var(--text-primary);
+            border-bottom-left-radius: 0.25rem;
+        }
+        .user-message .message-bubble {
+            background-color: var(--brand-gold);
+            color: white;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: #9E9E9E;
+            border-radius: 50%;
+            display: inline-block;
+            animation: jarvis-blinker 1.4s infinite both;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: .2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: .4s; }
+        @keyframes jarvis-blinker {
+            0% { opacity: .2; }
+            20% { opacity: 1; }
+            100% { opacity: .2; }
+        }
+        /* --- FIM: ESTILOS DO CHAT DO JARVIS --- */
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -527,443 +636,725 @@
             </div>
         </div>
     </div>
-    
-    <a href="https://wa.me/5513991830277?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- ======================================================= -->
+    <!-- INÍCIO: WIDGET DE CHAT DO JARVIS                        -->
+    <!-- ======================================================= -->
+    <div id="jarvis-chat-widget">
+        <div id="jarvis-chat-container">
+            <!-- Cabeçalho do Chat -->
+            <div class="bg-gray-800 text-white p-4 flex items-center shadow-md rounded-t-lg flex-shrink-0">
+                <div class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center mr-3 border-2 border-yellow-200/50">
+                    <i class="fas fa-robot text-white"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold">Jarvis</h2>
+                    <p class="text-xs text-gray-300">Assistente Virtual Piel Telecom</p>
+                </div>
+            </div>
+            <!-- Log de Mensagens -->
+            <div id="jarvis-chat-log">
+                <!-- Mensagens dinâmicas aqui -->
+            </div>
+            <!-- Input de Mensagem -->
+            <div class="bg-white p-3 border-t border-gray-200 rounded-b-lg flex-shrink-0">
+                <div class="flex items-center">
+                    <input type="text" id="jarvis-user-input" class="flex-1 border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-brand-gold" placeholder="Digite sua mensagem...">
+                    <button id="jarvis-send-button" class="ml-3 bg-brand-gold text-white rounded-full p-2.5 hover:bg-brand-gold-dark focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 transition-transform transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button id="jarvis-chat-button" aria-label="Abrir chat com Jarvis">
+            <i id="jarvis-open-icon" class="fas fa-comment-dots fa-lg"></i>
+            <i id="jarvis-close-icon" class="fas fa-times fa-lg hidden"></i>
+        </button>
+    </div>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // =======================================================
-        // CONFIGURAÇÕES GLOBAIS E MAPEAMENTO DO DOM
-        // =======================================================
-        const CONFIG = {
-            whatsappNumber: '5513991830277'
-        };
+    // =======================================================
+    // CONFIGURAÇÕES GLOBAIS E MAPEAMENTO DO DOM
+    // =======================================================
+    const CONFIG = {
+        whatsappNumber: '5513991830277'
+    };
 
-        // !!! IMPORTANTE !!!
-        // Para que a IA funcione fora do ambiente Gemini, você precisa de uma API Key.
-        // 1. Acesse https://aistudio.google.com/app/apikey
-        // 2. Crie uma nova API Key.
-        // 3. Cole a chave criada na constante abaixo.
-        const USER_API_KEY = "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0"; // <--- SUBSTITUIR PELA SUA CHAVE
+    // !!! IMPORTANTE !!!
+    // Esta é a chave API que já estava no seu site.
+    // Certifique-se de que ela esteja correta e ativa.
+    const USER_API_KEY = "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0";
 
-        const NODES = {
-            // Navegação e Menu
-            menuBtn: document.getElementById('menu-btn'),
-            mobileMenu: document.getElementById('mobile-menu'),
-            menuIconOpen: document.getElementById('menu-icon-open'),
-            menuIconClose: document.getElementById('menu-icon-close'),
-            mobileMenuLinks: document.querySelectorAll('.mobile-menu-link'),
-            
-            // Elementos gerais e animações
-            fadeInElements: document.querySelectorAll('.fade-in-element'),
-            promoCarousel: document.getElementById('promo-carousel'),
-
-            // Recomendador IA
-            recommendBtn: document.getElementById('recommend-btn'),
-            needsInput: document.getElementById('needs-input'),
-            recommendLoader: document.getElementById('recommend-loader'),
-            recommenderError: document.getElementById('recommender-error'),
-            recommendedContainer: document.getElementById('recommended-plans-container'),
-            recommendedGrid: document.getElementById('recommended-plans-grid'),
-            allPlansContainer: document.getElementById('all-plans-container'),
-            allPlansStorage: document.getElementById('all-plans-storage'),
-
-            // Modal de Cidade
-            cityModal: document.getElementById('city-modal'),
-            cityModalPanel: document.getElementById('city-modal-panel'),
-            closeCityModalBtn: document.getElementById('close-city-modal-btn'),
-            citySearchInput: document.getElementById('city-search-input'),
-            cityListContainer: document.getElementById('city-list-container'),
-            cityListError: document.getElementById('city-list-error'),
-            confirmCityBtn: document.getElementById('confirm-city-btn'),
-
-            // Modal de Checkout
-            checkoutModal: document.getElementById('checkout-modal'),
-            closeModalBtn: document.getElementById('close-modal-btn'),
-            selectedPlanNameSpan: document.getElementById('selected-plan-name'),
-            
-            // Formulário WhatsApp
-            whatsappFormContainer: document.getElementById('whatsapp-form-container'),
-            whatsappSuccessContainer: document.getElementById('whatsapp-success'),
-            whatsappForm: document.getElementById('whatsapp-form'),
-            whatsappSendLink: document.getElementById('whatsapp-send-link'),
-            radioLabels: document.querySelectorAll('.form-radio-label'),
-            cepInput: document.getElementById('wa-cep'),
-            cpfInput: document.getElementById('wa-cpf'),
-            telInput: document.getElementById('wa-tel1')
-        };
+    const NODES = {
+        // Navegação e Menu
+        menuBtn: document.getElementById('menu-btn'),
+        mobileMenu: document.getElementById('mobile-menu'),
+        menuIconOpen: document.getElementById('menu-icon-open'),
+        menuIconClose: document.getElementById('menu-icon-close'),
+        mobileMenuLinks: document.querySelectorAll('.mobile-menu-link'),
         
-        let selectedPlanInfo = {};
+        // Elementos gerais e animações
+        fadeInElements: document.querySelectorAll('.fade-in-element'),
+        promoCarousel: document.getElementById('promo-carousel'),
 
-        // =======================================================
-        // FUNÇÕES DE UTILIDADE GERAL
-        // =======================================================
+        // Recomendador IA
+        recommendBtn: document.getElementById('recommend-btn'),
+        needsInput: document.getElementById('needs-input'),
+        recommendLoader: document.getElementById('recommend-loader'),
+        recommenderError: document.getElementById('recommender-error'),
+        recommendedContainer: document.getElementById('recommended-plans-container'),
+        recommendedGrid: document.getElementById('recommended-plans-grid'),
+        allPlansContainer: document.getElementById('all-plans-container'),
+        allPlansStorage: document.getElementById('all-plans-storage'),
 
-        function toggleMobileMenu() {
-            const isExpanded = NODES.menuBtn.getAttribute('aria-expanded') === 'true';
-            NODES.menuBtn.setAttribute('aria-expanded', !isExpanded);
-            NODES.mobileMenu.classList.toggle('hidden');
-            NODES.menuIconOpen.classList.toggle('hidden');
-            NODES.menuIconClose.classList.toggle('hidden');
-        }
+        // Modal de Cidade
+        cityModal: document.getElementById('city-modal'),
+        cityModalPanel: document.getElementById('city-modal-panel'),
+        closeCityModalBtn: document.getElementById('close-city-modal-btn'),
+        citySearchInput: document.getElementById('city-search-input'),
+        cityListContainer: document.getElementById('city-list-container'),
+        cityListError: document.getElementById('city-list-error'),
+        confirmCityBtn: document.getElementById('confirm-city-btn'),
 
-        function initScrollAnimation() {
-            if (!('IntersectionObserver' in window)) return;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            NODES.fadeInElements.forEach(el => observer.observe(el));
-        }
-
-        function displayUserError(message, errorElement) {
-            if (errorElement) {
-                errorElement.textContent = message;
-                errorElement.classList.remove('hidden');
-            }
-        }
+        // Modal de Checkout
+        checkoutModal: document.getElementById('checkout-modal'),
+        closeModalBtn: document.getElementById('close-modal-btn'),
+        selectedPlanNameSpan: document.getElementById('selected-plan-name'),
         
-        // =======================================================
-        // LÓGICA DO RECOMENDADOR COM GEMINI API
-        // =======================================================
+        // Formulário WhatsApp
+        whatsappFormContainer: document.getElementById('whatsapp-form-container'),
+        whatsappSuccessContainer: document.getElementById('whatsapp-success'),
+        whatsappForm: document.getElementById('whatsapp-form'),
+        whatsappSendLink: document.getElementById('whatsapp-send-link'),
+        radioLabels: document.querySelectorAll('.form-radio-label'),
+        cepInput: document.getElementById('wa-cep'),
+        cpfInput: document.getElementById('wa-cpf'),
+        telInput: document.getElementById('wa-tel1')
+    };
+    
+    let selectedPlanInfo = {};
 
-        function getAllPlansFromDOM() {
-            const planNodes = NODES.allPlansStorage.content.querySelectorAll('.plan-card');
-            const plans = [];
-            planNodes.forEach(node => {
-                const features = Array.from(node.querySelectorAll('ul li')).map(li => li.textContent.trim());
-                plans.push({
-                    id: node.id,
-                    name: node.querySelector('h3').textContent.trim(),
-                    description: node.querySelector('p').textContent.trim(),
-                    price: node.dataset.price,
-                    features: features
-                });
-            });
-            return plans;
-        }
+    // =======================================================
+    // FUNÇÕES DE UTILIDADE GERAL E DO SITE ORIGINAL
+    // =======================================================
 
-        async function handleRecommendation() {
-            const userInput = NODES.needsInput.value.trim();
-            if (!userInput) {
-                displayUserError("Por favor, descreva sua necessidade para a IA.", NODES.recommenderError);
-                return;
-            }
+    function toggleMobileMenu() {
+        const isExpanded = NODES.menuBtn.getAttribute('aria-expanded') === 'true';
+        NODES.menuBtn.setAttribute('aria-expanded', !isExpanded);
+        NODES.mobileMenu.classList.toggle('hidden');
+        NODES.menuIconOpen.classList.toggle('hidden');
+        NODES.menuIconClose.classList.toggle('hidden');
+    }
 
-            if (USER_API_KEY === "COLE_SUA_API_KEY_AQUI" || !USER_API_KEY) {
-                displayUserError("API Key do Google não configurada. Por favor, adicione sua chave no código para a IA funcionar.", NODES.recommenderError);
-                console.warn("Chave de API do Gemini não encontrada. Insira sua chave na variável USER_API_KEY.");
-                return;
-            }
-
-            if (NODES.recommenderError) NODES.recommenderError.classList.add('hidden');
-            NODES.recommendLoader.classList.remove('hidden');
-            NODES.recommendBtn.disabled = true;
-
-            const allPlans = getAllPlansFromDOM();
-            const prompt = `Você é um assistente especialista em vendas de planos de internet da empresa Piel Telecom. Sua tarefa é analisar a necessidade de um cliente e recomendar os 3 melhores planos de internet para ele, com base na lista de planos disponíveis. **Necessidade do Cliente:** "${userInput}" **Lista de Planos Disponíveis (formato JSON):** ${JSON.stringify(allPlans, null, 2)} **Instruções:** 1. Analise a necessidade do cliente e compare com os detalhes de cada plano. 2. Selecione os 3 planos mais adequados. 3. Para cada plano recomendado, escreva uma justificativa curta e amigável (em português do Brasil). 4. Retorne sua resposta estritamente no formato JSON especificado no schema. Não inclua nenhuma outra informação ou texto fora do JSON. 5. IMPORTANTE: Assegure que o JSON de saída seja perfeitamente válido. O campo "reason" deve ser uma string única, sem quebras de linha literais e com aspas duplas devidamente escapadas (\\").`;
-
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: prompt }] }],
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: { type: "OBJECT", properties: { "recommendations": { type: "ARRAY", items: { type: "OBJECT", properties: { "planId": { "type": "STRING" }, "reason": { "type": "STRING" } }, required: ["planId", "reason"] } } }, required: ["recommendations"] }
+    function initScrollAnimation() {
+        if (!('IntersectionObserver' in window)) return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
-            };
-            
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
+            });
+        }, { threshold: 0.1 });
+        NODES.fadeInElements.forEach(el => observer.observe(el));
+    }
 
+    function displayUserError(message, errorElement) {
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+    }
+    
+    function getAllPlansFromDOM() {
+        const planNodes = NODES.allPlansStorage.content.querySelectorAll('.plan-card');
+        const plans = [];
+        planNodes.forEach(node => {
+            const features = Array.from(node.querySelectorAll('ul li')).map(li => li.textContent.trim());
+            plans.push({
+                id: node.id,
+                name: node.querySelector('h3').textContent.trim(),
+                description: node.querySelector('p').textContent.trim(),
+                price: node.dataset.price,
+                features: features
+            });
+        });
+        return plans;
+    }
+
+    async function handleRecommendation() {
+        const userInput = NODES.needsInput.value.trim();
+        if (!userInput) {
+            displayUserError("Por favor, descreva sua necessidade para a IA.", NODES.recommenderError);
+            return;
+        }
+
+        if (USER_API_KEY === "COLE_SUA_API_KEY_AQUI" || !USER_API_KEY) {
+            displayUserError("API Key do Google não configurada. Por favor, adicione sua chave no código para a IA funcionar.", NODES.recommenderError);
+            console.warn("Chave de API do Gemini não encontrada. Insira sua chave na variável USER_API_KEY.");
+            return;
+        }
+
+        if (NODES.recommenderError) NODES.recommenderError.classList.add('hidden');
+        NODES.recommendLoader.classList.remove('hidden');
+        NODES.recommendBtn.disabled = true;
+
+        const allPlans = getAllPlansFromDOM();
+        const prompt = `Você é um assistente especialista em vendas de planos de internet da empresa Piel Telecom. Sua tarefa é analisar a necessidade de um cliente e recomendar os 3 melhores planos de internet para ele, com base na lista de planos disponíveis. **Necessidade do Cliente:** "${userInput}" **Lista de Planos Disponíveis (formato JSON):** ${JSON.stringify(allPlans, null, 2)} **Instruções:** 1. Analise a necessidade do cliente e compare com os detalhes de cada plano. 2. Selecione os 3 planos mais adequados. 3. Para cada plano recomendado, escreva uma justificativa curta e amigável (em português do Brasil). 4. Retorne sua resposta estritamente no formato JSON especificado no schema. Não inclua nenhuma outra informação ou texto fora do JSON. 5. IMPORTANTE: Assegure que o JSON de saída seja perfeitamente válido. O campo "reason" deve ser uma string única, sem quebras de linha literais e com aspas duplas devidamente escapadas (\\").`;
+
+        const payload = {
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json",
+                responseSchema: { type: "OBJECT", properties: { "recommendations": { type: "ARRAY", items: { type: "OBJECT", properties: { "planId": { "type": "STRING" }, "reason": { "type": "STRING" } }, required: ["planId", "reason"] } } }, required: ["recommendations"] }
+            }
+        };
+        
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
+
+        try {
+            const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (!response.ok) {
+                const errorBody = await response.text();
+                throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorBody}`);
+            }
+            const result = await response.json();
+            if (!result.candidates || result.candidates.length === 0) {
+                throw new Error("A resposta da IA está vazia ou em formato inesperado.");
+            }
+            const jsonText = result.candidates[0].content.parts[0].text;
             try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) {
-                    const errorBody = await response.text();
-                    throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorBody}`);
-                }
-                const result = await response.json();
-                if (!result.candidates || result.candidates.length === 0) {
-                    throw new Error("A resposta da IA está vazia ou em formato inesperado.");
-                }
-                const jsonText = result.candidates[0].content.parts[0].text;
-                try {
-                    const parsedResult = JSON.parse(jsonText);
-                    renderRecommendations(parsedResult);
-                } catch (parseError) {
-                    console.error("Erro ao parsear JSON da IA:", parseError);
-                    throw new Error(`A IA retornou um JSON inválido: ${jsonText}`);
-                }
-            } catch (error) {
-                console.error("Falha ao obter recomendação da API Gemini:", error);
-                displayUserError("Desculpe, a IA não conseguiu gerar uma recomendação. Tente novamente mais tarde.", NODES.recommenderError);
-            } finally {
-                NODES.recommendLoader.classList.add('hidden');
-                NODES.recommendBtn.disabled = false;
+                const parsedResult = JSON.parse(jsonText);
+                renderRecommendations(parsedResult);
+            } catch (parseError) {
+                console.error("Erro ao parsear JSON da IA:", parseError);
+                throw new Error(`A IA retornou um JSON inválido: ${jsonText}`);
             }
+        } catch (error) {
+            console.error("Falha ao obter recomendação da API Gemini:", error);
+            displayUserError("Desculpe, a IA não conseguiu gerar uma recomendação. Tente novamente mais tarde.", NODES.recommenderError);
+        } finally {
+            NODES.recommendLoader.classList.add('hidden');
+            NODES.recommendBtn.disabled = false;
+        }
+    }
+
+    function renderRecommendations(result) {
+        const flkty = Flickity.data(NODES.recommendedGrid);
+        if (flkty) flkty.destroy();
+        
+        NODES.recommendedGrid.innerHTML = ''; 
+
+        if (!result.recommendations || result.recommendations.length === 0) {
+             displayUserError("Não foram encontradas recomendações.", NODES.recommenderError);
+             return;
         }
 
-        function renderRecommendations(result) {
-            const flkty = Flickity.data(NODES.recommendedGrid);
-            if (flkty) flkty.destroy();
-            
-            NODES.recommendedGrid.innerHTML = ''; 
-
-            if (!result.recommendations || result.recommendations.length === 0) {
-                 displayUserError("Não foram encontradas recomendações.", NODES.recommenderError);
-                 return;
-            }
-
-            result.recommendations.forEach(rec => {
-                const originalCard = NODES.allPlansStorage.content.getElementById(rec.planId);
-                if (originalCard) {
-                    const clonedCardContainer = document.createElement('div');
-                    clonedCardContainer.className = 'carousel-cell';
-                    const clonedCard = originalCard.cloneNode(true);
-                    
-                    const reasonContainer = clonedCard.querySelector('.gemini-reason-container');
-                    if (reasonContainer) {
-                        reasonContainer.innerHTML = `<div class="p-3 mt-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm text-yellow-800 rounded-r-lg"><strong>✨ Recomendação da IA:</strong> ${rec.reason}</div>`;
-                    }
-                    clonedCardContainer.appendChild(clonedCard);
-                    NODES.recommendedGrid.appendChild(clonedCardContainer);
+        result.recommendations.forEach(rec => {
+            const originalCard = NODES.allPlansStorage.content.getElementById(rec.planId);
+            if (originalCard) {
+                const clonedCardContainer = document.createElement('div');
+                clonedCardContainer.className = 'carousel-cell';
+                const clonedCard = originalCard.cloneNode(true);
+                
+                const reasonContainer = clonedCard.querySelector('.gemini-reason-container');
+                if (reasonContainer) {
+                    reasonContainer.innerHTML = `<div class="p-3 mt-4 bg-yellow-50 border-l-4 border-yellow-400 text-sm text-yellow-800 rounded-r-lg"><strong>✨ Recomendação da IA:</strong> ${rec.reason}</div>`;
                 }
-            });
-            
-            new Flickity(NODES.recommendedGrid, { wrapAround: true, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true, autoPlay: false });
-            
-            NODES.recommendedContainer.classList.remove('hidden');
-            NODES.allPlansContainer.classList.add('hidden');
-            NODES.recommendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+                clonedCardContainer.appendChild(clonedCard);
+                NODES.recommendedGrid.appendChild(clonedCardContainer);
+            }
+        });
         
-        // =======================================================
-        // LÓGICA DO MODAL DE CIDADE
-        // =======================================================
-        const citiesString = "Aguaí, Águas de Santa Bárbara, Agudos, Alumínio, Americana, Américo Brasiliense, Amparo, Araçariguama, Arandu, Araraquara, Araras, Areiópolis, Artur Nogueira, Atibaia, Avaí, Avaré, Bady Bassitt, Barra Bonita, Barretos, Bauru, Bebedouro, Biritiba-Mirim, Boa Esperança do Sul, Bocaina, Bom Jesus dos Perdões, Borborema, Borebi, Botucatu, Bragança Paulista, Cabreúva, Caçapava, Cafelândia, Caieiras, Campinas, Campo Limpo Paulista, Cândido Rodrigues, Capivari, Casa Branca, Cedral, Cerqueira César, Colina, Conchal, Cordeirópolis, Cosmópolis, Cravinhos, Cristais Paulista, Cubatão, Descalvado, Dobrada, Dois Córregos, Dourado, Engenheiro Coelho, Estiva Gerbi, Fernando Prestes, Franca, Francisco Morato, Franco da Rocha, Gavião Peixoto, Guaíra, Guapiaçu, Guararema, Guariba, Guarujá, Guatapará, Holambra, Hortolândia, Iaras, Ibaté, Ibitinga, Igaraçu do Tietê, Igaratá, Indaiatuba, Iracemápolis, Itaí, Itajobi, Itaju, Itanhaém, Itápolis, Itapuí, Itatinga, Itirapuã, Itupeva, Jaborandi, Jaboticabal, Jacareí, Jaguariúna, Jarinu, Jaú, Jundiaí, Leme, Lençóis Paulista, Limeira, Lindóia, Lins, Louveira, Macatuba, Mairiporã, Manduri, Matão, Mineiros do Tietê, Mirassol, Mogi das Cruzes, Mogi Guaçu, Mogi Mirim, Mongaguá, Monte Alto, Monte Mor, Motuca, Nazaré Paulista, Nova Europa, Nova Odessa, Óleo, Olímpia, Paranapanema, Pardinho, Patrocínio Paulista, Paulínia, Pederneiras, Pedreira, Peruíbe, Pindorama, Piracaia, Piracicaba, Pirajuí, Pirassununga, Piratininga, Pitangueiras, Porto Ferreira, Praia Grande, Pratânia, Presidente Alves, Rafard, Ribeirão Bonito, Ribeirão Corrente, Ribeirão Preto, Rincão, Salesópolis, Santa Adélia, Santa Bárbara d'Oeste, Santa Branca, Santa Cruz das Palmeiras, Santa Ernestina, Santa Gertrudes, Santa Lúcia, Santa Rita do Passa Quatro, Santa Rosa de Viterbo, Santo Antônio de Posse, Santos, São Bernardo do Campo, São Carlos, São José do Rio Preto, São José dos Campos, São Manuel, São Vicente, Serra Azul, Serra Negra, Sorocaba, Sumaré, Tabatinga, Tambaú, Taquaritinga, Taubaté, Trabiju, Tremembé, Uchoa, Valinhos, Várzea Paulista, Vinhedo, Votorantim";
-        const availableCities = citiesString.split(', ').sort();
-
-        const openCityModal = () => {
-            NODES.citySearchInput.value = '';
-            renderCityList(availableCities);
-            NODES.confirmCityBtn.disabled = true;
-            NODES.cityModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => {
-                NODES.cityModalPanel.classList.remove('opacity-0', '-translate-y-4');
-            }, 10);
-        };
-
-        const closeCityModal = () => {
-            NODES.cityModalPanel.classList.add('opacity-0', '-translate-y-4');
-            setTimeout(() => {
-                NODES.cityModal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
-        };
-
-        const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        new Flickity(NODES.recommendedGrid, { wrapAround: true, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true, autoPlay: false });
         
-        const renderCityList = (cities) => {
-            NODES.cityListContainer.innerHTML = '';
-            NODES.cityListError.classList.toggle('hidden', cities.length === 0);
-            cities.forEach(city => {
-                const cityButton = document.createElement('button');
-                cityButton.className = 'w-full text-left px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-brand-gold transition-colors duration-150';
-                cityButton.textContent = city;
-                cityButton.type = 'button';
-                NODES.cityListContainer.appendChild(cityButton);
-            });
-        };
-        
-        const filterCities = () => {
-            const searchTerm = normalizeText(NODES.citySearchInput.value);
-            const filtered = availableCities.filter(city => normalizeText(city).includes(searchTerm));
-            renderCityList(filtered);
-            validateCitySelection();
-        };
+        NODES.recommendedContainer.classList.remove('hidden');
+        NODES.allPlansContainer.classList.add('hidden');
+        NODES.recommendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    const citiesString = "Aguaí, Águas de Santa Bárbara, Agudos, Alumínio, Americana, Américo Brasiliense, Amparo, Angatuba, Araçariguama, Araçoiaba da Serra, Arandu, Araraquara, Araras, Arealva, Areiópolis, Artur Nogueira, Atibaia, Avaí, Avaré, Bady Bassitt, Barra Bonita, Barretos, Bauru, Bebedouro, Biritiba-Mirim, Boa Esperança do Sul, Bocaina, Bofete, Boituva, Bom Jesus dos Perdões, Borborema, Borebi, Botucatu, Bragança Paulista, Cabreúva, Caçapava, Cafelândia, Caieiras, Campina do Monte Alegre, Campinas, Campo Limpo Paulista, Cândido Rodrigues, Capela do Alto, Capivari, Casa Branca, Cedral, Cerqueira César, Cerquilho, Cesário Lange, Colina, Conchal, Conchas, Cordeirópolis, Cosmópolis, Cravinhos, Cristais Paulista, Cubatão, Descalvado, Dobrada, Dois Córregos, Dourado, Elias Fausto, Engenheiro Coelho, Estiva Gerbi, Fernando Prestes, Franca, Francisco Morato, Franco da Rocha, Gavião Peixoto, Guaíra, Guapiaçu, Guarantã, Guararema, Guariba, Guarujá, Guatapará, Holambra, Hortolândia, Iaras, Ibaté, Ibitinga, Igaraçu do Tietê, Igaratá, Indaiatuba, Iperó, Iracemápolis, Itaí, Itajobi, Itaju, Itanhaém, Itapetininga, Itápolis, Itapuí, Itatinga, Itirapuã, Itu, Itupeva, Jaborandi, Jaboticabal, Jacareí, Jaguariúna, Jarinu, Jaú, Jumirim, Jundiaí, Laranjal Paulista, Leme, Lençóis Paulista, Limeira, Lindóia, Lins, Louveira, Macatuba, Mairiporã, Manduri, Matão, Mineiros do Tietê, Mirassol, Mogi das Cruzes, Mogi Guaçu, Mogi Mirim, Mongaguá, Monte Alegre do Sul, Monte Alto, Monte Mor, Motuca, Nazaré Paulista, Nova Europa, Nova Odessa, Óleo, Olímpia, Paranapanema, Pardinho, Patrocínio Paulista, Paulínia, Pederneiras, Pedreira, Pereiras, Peruíbe, Pilar do Sul, Pindorama, Piracaia, Piracicaba, Pirajuí, Pirassununga, Piratininga, Pitangueiras, Porangaba, Porto Ferreira, Praia Grande, Pratânia, Presidente Alves, Quadra, Rafard, Ribeirão Bonito, Ribeirão Corrente, Ribeirão Preto, Rincão, Rio Claro, Rio das Pedras, Salesópolis, Saltinho, Salto de Pirapora, Santa Adélia, Santa Bárbara D’Oeste, Santa Branca, Santa Cruz das Palmeiras, Santa Ernestina, Santa Gertrudes, Santa Lúcia, Santa Rita do Passa Quatro, Santa Rosa de Viterbo, Santo Antônio de Posse, Santos, São Bernardo do Campo, São Carlos, São José do Rio Preto, São José dos Campos, São Manuel, São Vicente, Sarapuí, Serra Azul, Serra Negra, Sorocaba, Sumaré, Tabatinga, Tambaú, Taquaritinga, Tatuí, Taubaté, Tietê, Trabiju, Tremembé, Uchoa, Valinhos, Várzea Paulista, Vinhedo, Votorantim";
+    const availableCities = citiesString.split(', ').sort();
 
-        const validateCitySelection = () => {
-            const currentInput = normalizeText(NODES.citySearchInput.value);
-            const isValid = availableCities.some(city => normalizeText(city) === currentInput);
-            NODES.confirmCityBtn.disabled = !isValid;
-        };
+    const openCityModal = () => {
+        NODES.citySearchInput.value = '';
+        renderCityList(availableCities);
+        NODES.confirmCityBtn.disabled = true;
+        NODES.cityModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            NODES.cityModalPanel.classList.remove('opacity-0', '-translate-y-4');
+        }, 10);
+    };
 
-        // =======================================================
-        // LÓGICA DO MODAL DE CHECKOUT E FORMULÁRIO
-        // =======================================================
-
-        function openCheckoutModal(planData) {
-            NODES.selectedPlanNameSpan.textContent = planData.plan;
-            NODES.whatsappForm.dataset.plan = planData.plan;
-            NODES.whatsappForm.dataset.price = planData.price;
-
-            NODES.whatsappForm.reset();
-            clearFormErrors();
-            NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
-            NODES.whatsappFormContainer.classList.remove('hidden');
-            NODES.whatsappSuccessContainer.classList.add('hidden');
-            NODES.checkoutModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            NODES.checkoutModal.focus();
-        }
-
-        function closeCheckoutModal() {
-            NODES.checkoutModal.classList.add('hidden');
+    const closeCityModal = () => {
+        NODES.cityModalPanel.classList.add('opacity-0', '-translate-y-4');
+        setTimeout(() => {
+            NODES.cityModal.classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
+        }, 300);
+    };
 
-        function handleRadioChange(event) {
-            const currentLabel = event.currentTarget;
-            NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
-            currentLabel.classList.add('is-checked');
-            document.getElementById('radio-error-message').textContent = '';
-        }
+    const normalizeText = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    
+    const renderCityList = (cities) => {
+        NODES.cityListContainer.innerHTML = '';
+        NODES.cityListError.classList.toggle('hidden', cities.length === 0);
+        cities.forEach(city => {
+            const cityButton = document.createElement('button');
+            cityButton.className = 'w-full text-left px-4 py-2 text-gray-700 hover:bg-yellow-50 hover:text-brand-gold transition-colors duration-150';
+            cityButton.textContent = city;
+            cityButton.type = 'button';
+            NODES.cityListContainer.appendChild(cityButton);
+        });
+    };
+    
+    const filterCities = () => {
+        const searchTerm = normalizeText(NODES.citySearchInput.value);
+        const filtered = availableCities.filter(city => normalizeText(city).includes(searchTerm));
+        renderCityList(filtered);
+        validateCitySelection();
+    };
+
+    const validateCitySelection = () => {
+        const currentInput = normalizeText(NODES.citySearchInput.value);
+        const isValid = availableCities.some(city => normalizeText(city) === currentInput);
+        NODES.confirmCityBtn.disabled = !isValid;
+    };
+
+    function openCheckoutModal(planData) {
+        NODES.selectedPlanNameSpan.textContent = planData.plan;
+        NODES.whatsappForm.dataset.plan = planData.plan;
+        NODES.whatsappForm.dataset.price = planData.price;
+
+        NODES.whatsappForm.reset();
+        clearFormErrors();
+        NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
+        NODES.whatsappFormContainer.classList.remove('hidden');
+        NODES.whatsappSuccessContainer.classList.add('hidden');
+        NODES.checkoutModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        NODES.checkoutModal.focus();
+    }
+
+    function closeCheckoutModal() {
+        NODES.checkoutModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function handleRadioChange(event) {
+        const currentLabel = event.currentTarget;
+        NODES.radioLabels.forEach(label => label.classList.remove('is-checked'));
+        currentLabel.classList.add('is-checked');
+        document.getElementById('radio-error-message').textContent = '';
+    }
+    
+    function applyInputMask(input, maskFunction) {
+        input.addEventListener('input', (e) => { e.target.value = maskFunction(e.target.value); });
+    }
+
+    const maskCPF = value => value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    const maskTel = value => value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{4})\d+?$/, '$1');
+    const maskCEP = value => value.replace(/\D/g, '').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{3})\d+?$/, '$1');
+
+    function validateField(input) {
+        let isValid = input.checkValidity();
+        const errorContainer = input.nextElementSibling;
         
-        function applyInputMask(input, maskFunction) {
-            input.addEventListener('input', (e) => { e.target.value = maskFunction(e.target.value); });
+        if (input.name === 'wa-cpf') isValid = isValid && /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(input.value);
+        if (input.name === 'wa-tel1') isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
+        if (input.name === 'wa-cep') isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
+
+        if (errorContainer) {
+            input.classList.toggle('is-invalid', !isValid);
+            errorContainer.textContent = isValid ? '' : (input.validationMessage || 'Campo inválido.');
         }
+        return isValid;
+    }
 
-        const maskCPF = value => value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-        const maskTel = value => value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{4})\d+?$/, '$1');
-        const maskCEP = value => value.replace(/\D/g, '').replace(/(\d{5})(\d)/, '$1-$2').replace(/(-\d{3})\d+?$/, '$1');
-
-        function validateField(input) {
-            let isValid = input.checkValidity();
-            const errorContainer = input.nextElementSibling;
-            
-            if (input.name === 'wa-cpf') isValid = isValid && /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(input.value);
-            if (input.name === 'wa-tel1') isValid = isValid && /^\(\d{2}\) \d{5}-\d{4}$/.test(input.value);
-            if (input.name === 'wa-cep') isValid = isValid && /^\d{5}-\d{3}$/.test(input.value);
-
-            if (errorContainer) { // Adiciona verificação para garantir que o contêiner de erro existe
-                input.classList.toggle('is-invalid', !isValid);
-                errorContainer.textContent = isValid ? '' : (input.validationMessage || 'Campo inválido.');
-            }
-            return isValid;
-        }
-
-        function clearFormErrors() {
-             NODES.whatsappForm.querySelectorAll('.form-input').forEach(input => {
-                input.classList.remove('is-invalid');
-                if (input.nextElementSibling?.classList.contains('error-message')) {
-                    input.nextElementSibling.textContent = '';
-                }
-            });
-            document.getElementById('radio-error-message').textContent = '';
-        }
-
-        async function handleWhatsappSubmit(e) {
-            e.preventDefault();
-            clearFormErrors();
-
-            let isFormValid = Array.from(NODES.whatsappForm.querySelectorAll('input[required]:not([type=radio])')).every(validateField);
-            
-            const radioChecked = NODES.whatsappForm.querySelector('input[name="installation_period"]:checked');
-            if (!radioChecked) {
-                document.getElementById('radio-error-message').textContent = 'Por favor, selecione um período.';
-                isFormValid = false;
-            }
-
-            if (!isFormValid) return;
-
-            const formData = new FormData(NODES.whatsappForm);
-            const data = Object.fromEntries(formData.entries());
-            const { plan, price } = NODES.whatsappForm.dataset;
-            const message = `✨ NOVO PEDIDO DE CADASTRO ✨\n-----------------------------------\nPlano Escolhido: *${plan}*\nValor: *${price}*\n-----------------------------------\n🔹 NOME COMPLETO: ${data['wa-nome']}\n🔹 NOME DA MÃE: ${data['wa-mae']}\n🔹 DATA DE NASCIMENTO: ${data['wa-nascimento']}\n🔹 CPF: ${data['wa-cpf']}\n🔹 RG: ${data['wa-rg']}\n🔹 E-MAIL: ${data['wa-email']}\n🔹 TELEFONE TITULAR: ${data['wa-tel1']}\n🔹 ENDEREÇO: Rua ${data['wa-rua']}, Nº ${data['wa-numero']}, Bairro ${data['wa-bairro']}, Cidade ${data['wa-cidade']}, CEP ${data['wa-cep']}\n🔹 INSTALAÇÃO: ${data.installation_period}`;
-
-            NODES.whatsappSendLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-            NODES.whatsappFormContainer.classList.add('hidden');
-            NODES.whatsappSuccessContainer.classList.remove('hidden');
-        }
-        
-        async function fetchAddressFromCEP(cep) {
-            const cleanCep = cep.replace(/\D/g, '');
-            if (cleanCep.length !== 8) return;
-            try {
-                const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
-                if (!response.ok) throw new Error('CEP não encontrado');
-                const address = await response.json();
-                if (address.erro) throw new Error('CEP inválido');
-                document.getElementById('wa-rua').value = address.logradouro || '';
-                document.getElementById('wa-bairro').value = address.bairro || '';
-                document.getElementById('wa-cidade').value = address.localidade || '';
-            } catch (error) {
-                console.error("Erro ao buscar CEP:", error);
-            }
-        }
-
-        // =======================================================
-        // INICIALIZAÇÃO E EVENT LISTENERS GLOBAIS
-        // =======================================================
-        
-        initScrollAnimation();
-
-        if (NODES.promoCarousel) {
-            new Flickity(NODES.promoCarousel, { wrapAround: true, autoPlay: false, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true });
-        }
-        
-        NODES.menuBtn.addEventListener('click', toggleMobileMenu);
-        NODES.mobileMenuLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
-        
-        if (NODES.recommendBtn) {
-            NODES.recommendBtn.addEventListener('click', handleRecommendation);
-        }
-        
-        // Eventos do Modal de Cidade
-        NODES.closeCityModalBtn.addEventListener('click', closeCityModal);
-        NODES.cityModal.addEventListener('click', (e) => { if (e.target === NODES.cityModal) closeCityModal(); });
-        NODES.citySearchInput.addEventListener('input', filterCities);
-        NODES.cityListContainer.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                NODES.citySearchInput.value = e.target.textContent;
-                filterCities();
+    function clearFormErrors() {
+         NODES.whatsappForm.querySelectorAll('.form-input').forEach(input => {
+            input.classList.remove('is-invalid');
+            if (input.nextElementSibling?.classList.contains('error-message')) {
+                input.nextElementSibling.textContent = '';
             }
         });
-        NODES.confirmCityBtn.addEventListener('click', () => {
-            openCheckoutModal(selectedPlanInfo);
-            closeCityModal();
-        });
+        document.getElementById('radio-error-message').textContent = '';
+    }
 
-        // Eventos do Modal de Checkout
-        NODES.closeModalBtn.addEventListener('click', closeCheckoutModal);
-        NODES.checkoutModal.addEventListener('click', (e) => { if (e.target === NODES.checkoutModal) closeCheckoutModal(); });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !NODES.checkoutModal.classList.contains('hidden')) closeCheckoutModal();
-        });
+    async function handleWhatsappSubmit(e) {
+        e.preventDefault();
+        clearFormErrors();
+
+        let isFormValid = Array.from(NODES.whatsappForm.querySelectorAll('input[required]:not([type=radio])')).every(validateField);
         
-        // Delegação de evento para os botões "Contratar"
-        document.body.addEventListener('click', (e) => {
-            const contratarBtn = e.target.closest('.contratar-btn');
-            if (contratarBtn) {
-                e.preventDefault();
-                const card = contratarBtn.closest('.plan-card');
-                if (card) {
-                    selectedPlanInfo = { 
-                        plan: card.dataset.plan, 
-                        price: card.dataset.price 
-                    };
-                    openCityModal();
-                }
-            }
-        });
+        const radioChecked = NODES.whatsappForm.querySelector('input[name="installation_period"]:checked');
+        if (!radioChecked) {
+            document.getElementById('radio-error-message').textContent = 'Por favor, selecione um período.';
+            isFormValid = false;
+        }
 
-        NODES.whatsappForm.addEventListener('submit', handleWhatsappSubmit);
-        NODES.radioLabels.forEach(label => label.addEventListener('click', handleRadioChange));
+        if (!isFormValid) return;
 
-        // Aplicando máscaras
-        applyInputMask(NODES.cpfInput, maskCPF);
-        applyInputMask(NODES.telInput, maskTel);
-        applyInputMask(NODES.cepInput, maskCEP);
-        
-        // Evento para buscar CEP
-        NODES.cepInput.addEventListener('blur', (e) => fetchAddressFromCEP(e.target.value));
+        const formData = new FormData(NODES.whatsappForm);
+        const data = Object.fromEntries(formData.entries());
+        const { plan, price } = NODES.whatsappForm.dataset;
+        const message = `✨ NOVO PEDIDO DE CADASTRO ✨\n-----------------------------------\nPlano Escolhido: *${plan}*\nValor: *${price}*\n-----------------------------------\n🔹 NOME COMPLETO: ${data['wa-nome']}\n🔹 NOME DA MÃE: ${data['wa-mae']}\n🔹 DATA DE NASCIMENTO: ${data['wa-nascimento']}\n🔹 CPF: ${data['wa-cpf']}\n🔹 RG: ${data['wa-rg']}\n� E-MAIL: ${data['wa-email']}\n🔹 TELEFONE TITULAR: ${data['wa-tel1']}\n🔹 ENDEREÇO: Rua ${data['wa-rua']}, Nº ${data['wa-numero']}, Bairro ${data['wa-bairro']}, Cidade ${data['wa-cidade']}, CEP ${data['wa-cep']}\n🔹 INSTALAÇÃO: ${data.installation_period}`;
+
+        NODES.whatsappSendLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        NODES.whatsappFormContainer.classList.add('hidden');
+        NODES.whatsappSuccessContainer.classList.remove('hidden');
+    }
+    
+    async function fetchAddressFromCEP(cep) {
+        const cleanCep = cep.replace(/\D/g, '');
+        if (cleanCep.length !== 8) return;
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+            if (!response.ok) throw new Error('CEP não encontrado');
+            const address = await response.json();
+            if (address.erro) throw new Error('CEP inválido');
+            document.getElementById('wa-rua').value = address.logradouro || '';
+            document.getElementById('wa-bairro').value = address.bairro || '';
+            document.getElementById('wa-cidade').value = address.localidade || '';
+        } catch (error) {
+            console.error("Erro ao buscar CEP:", error);
+        }
+    }
+    
+    initScrollAnimation();
+
+    if (NODES.promoCarousel) {
+        new Flickity(NODES.promoCarousel, { wrapAround: true, autoPlay: false, pageDots: true, cellAlign: 'left', contain: true, imagesLoaded: true });
+    }
+    
+    NODES.menuBtn.addEventListener('click', toggleMobileMenu);
+    NODES.mobileMenuLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
+    
+    if (NODES.recommendBtn) {
+        NODES.recommendBtn.addEventListener('click', handleRecommendation);
+    }
+    
+    NODES.closeCityModalBtn.addEventListener('click', closeCityModal);
+    NODES.cityModal.addEventListener('click', (e) => { if (e.target === NODES.cityModal) closeCityModal(); });
+    NODES.citySearchInput.addEventListener('input', filterCities);
+    NODES.cityListContainer.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            NODES.citySearchInput.value = e.target.textContent;
+            filterCities();
+        }
     });
+    NODES.confirmCityBtn.addEventListener('click', () => {
+        openCheckoutModal(selectedPlanInfo);
+        closeCityModal();
+    });
+
+    NODES.closeModalBtn.addEventListener('click', closeCheckoutModal);
+    NODES.checkoutModal.addEventListener('click', (e) => { if (e.target === NODES.checkoutModal) closeCheckoutModal(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !NODES.checkoutModal.classList.contains('hidden')) closeCheckoutModal();
+    });
+    
+    document.body.addEventListener('click', (e) => {
+        const contratarBtn = e.target.closest('.contratar-btn');
+        if (contratarBtn) {
+            e.preventDefault();
+            const card = contratarBtn.closest('.plan-card');
+            if (card) {
+                selectedPlanInfo = { 
+                    plan: card.dataset.plan, 
+                    price: card.dataset.price 
+                };
+                openCityModal();
+            }
+        }
+    });
+
+    NODES.whatsappForm.addEventListener('submit', handleWhatsappSubmit);
+    NODES.radioLabels.forEach(label => label.addEventListener('click', handleRadioChange));
+
+    applyInputMask(NODES.cpfInput, maskCPF);
+    applyInputMask(NODES.telInput, maskTel);
+    applyInputMask(NODES.cepInput, maskCEP);
+    
+    NODES.cepInput.addEventListener('blur', (e) => fetchAddressFromCEP(e.target.value));
+
+    // =======================================================
+    // INÍCIO: CÓDIGO DO JARVIS - IA DE CONVERSAÇÃO (VERSÃO FINAL APRIMORADA)
+    // =======================================================
+    
+    const jarvisNodes = {
+        chatButton: document.getElementById('jarvis-chat-button'),
+        chatContainer: document.getElementById('jarvis-chat-container'),
+        chatLog: document.getElementById('jarvis-chat-log'),
+        userInput: document.getElementById('jarvis-user-input'),
+        sendButton: document.getElementById('jarvis-send-button'),
+        openIcon: document.getElementById('jarvis-open-icon'),
+        closeIcon: document.getElementById('jarvis-close-icon')
+    };
+
+    const userSessions = {};
+    const userId = "site-user-" + Math.random().toString(36).substr(2, 9);
+
+    const KNOWLEDGE_BASE = {
+        numero_whatsapp_vendas: '5513991830277', // Número do site para receber a notificação
+        planos: {
+            "Fibra Home 200M+": { preco: "R$79,99", download: "200 Mbps", upload: "100 Mbps", perfil: "Ideal para clientes com orçamento limitado, que moram sozinhos ou em casal, e têm um uso básico da internet (redes sociais, vídeos em HD, e-mails).", argumento: "Este plano é focado no essencial, com uma ótima taxa de upload para essa faixa de preço." },
+            "Fibra Home 400M+": { preco: "R$94,99", download: "400 Mbps", upload: "200 Mbps", perfil: "Atende bem uma família, garantindo que todos possam assistir vídeos e navegar sem travar. Essencial para home office com videochamadas.", argumento: "Para quem trabalha em casa, a velocidade de envio de arquivos é crucial. Este plano já oferece 200 Mega de upload, o que deixa suas videochamadas com ótima qualidade." },
+            "Fibra Home 600M+": { preco: "R$99,99", download: "600 Mbps", upload: "300 Mbps", perfil: "Melhor custo-benefício de entrada. Garante que mesmo com todos conectados ao mesmo tempo, a qualidade continue perfeita.", argumento: "Por apenas R$ 5 a mais que o plano de 400M, o senhor leva 200 Mega a mais de download. É um salto de performance muito grande por uma diferença mínima." },
+            "Fibra Home 600M+ Max": { preco: "R$119,99", download: "600 Mbps", upload: "300 Mbps", perfil: "Mesma velocidade do 600M+ padrão, mas com hardware superior (ex: roteador Wi-Fi 6) para melhor cobertura e desempenho.", argumento: "Este plano inclui um roteador superior para garantir que o sinal de Wi-Fi chegue com força total em mais ambientes da casa." },
+            "Fibra Home 1G+": { preco: "R$119,99", download: "1 Gbps", upload: "500 Mbps", perfil: "Melhor custo-benefício de alta velocidade. Para clientes que buscam a máxima performance para downloads rápidos de jogos e arquivos.", argumento: "Se o foco é ter a velocidade bruta para baixar jogos e arquivos rapidamente, este plano de 1 Giga entrega uma experiência fantástica por um preço excelente." },
+            "Fibra Home 1G+ Gamer": { preco: "R$169,99", download: "1 Gbps", upload: "500 Mbps", perfil: "Plano desenhado para gamers, com rotas otimizadas para servidores de jogos, garantindo baixa latência (ping).", argumento: "Se o senhor joga online, sabe que o ping baixo é tudo. Este plano é desenhado para isso, com rotas otimizadas para os servidores dos principais jogos e 500 Mega de upload para suas lives." },
+            "Fibra Home 1G+ Home Office": { preco: "R$169,99", download: "1 Gbps", upload: "500 Mbps", perfil: "Otimizado para as principais ferramentas de trabalho, garantindo estabilidade em reuniões importantes.", argumento: "Este plano foi pensado para o profissional. Além da velocidade máxima, ele tem otimização para as principais ferramentas de trabalho, garantindo que sua internet não falhe em uma reunião importante." },
+            "Fibra Home 1G+ Black": { preco: "R$199,99", download: "1 Gbps", upload: "500 Mbps", perfil: "Para heavy users e casas conectadas, vem com equipamentos premium (Wi-Fi 6/6E, talvez rede Mesh) para cobertura total.", argumento: "Para quem precisa não só de velocidade, mas de um sinal que cubra a casa toda com qualidade, o plano Black vem com equipamentos premium para garantir que todos os seus dispositivos funcionem perfeitamente." },
+            "Fibra Home 1G+ Black c/ Disney+": { preco: "R$239,99", download: "1 Gbps", upload: "500 Mbps", perfil: "O pacote completo: internet mais rápida, equipamentos premium e assinatura do Disney+ inclusa.", argumento: "Para a família que quer o pacote completo: a internet mais rápida possível e já com o Disney+ incluso, tudo numa fatura só." },
+            "Fibra Home Socio Ponte Preta ou Guarani": { preco: "Preço Especial", download: "800 Mbps", upload: "400 Mbps", perfil: "Plano exclusivo para sócios torcedores com velocidade e preço especiais.", argumento: "Se o senhor é torcedor de coração, temos um plano exclusivo que, além de ter uma super velocidade, ainda ajuda o seu time." },
+            "Fibra Home 600M+ Movel 10G ou 15G": { preco: "Consultar", download: "600 Mbps", upload: "300 Mbps", perfil: "Combo de internet residencial com plano de celular, unificando as contas.", argumento: "Com nosso combo, o senhor leva uma internet de 600 Mega para casa e ainda um plano de celular. Fica tudo em uma conta só e muitas vezes sai mais barato." }
+        },
+        cidadesComCobertura: new Set(['aguaí', 'águas de santa bárbara', 'agudos', 'alumínio', 'americana', 'américo brasiliense', 'amparo', 'angatuba', 'araçariguama', 'araçoiaba da serra', 'arandu', 'araraquara', 'araras', 'arealva', 'areiópolis', 'artur nogueira', 'atibaia', 'avaí', 'avaré', 'bady bassitt', 'barra bonita', 'barretos', 'bauru', 'bebedouro', 'biritiba-mirim', 'boa esperança do sul', 'bocaina', 'bofete', 'boituva', 'bom jesus dos perdões', 'borborema', 'borebi', 'botucatu', 'bragança paulista', 'cabreúva', 'caçapava', 'cafelândia', 'caieiras', 'campina do monte alegre', 'campinas', 'campo limpo paulista', 'cândido rodrigues', 'capela do alto', 'capivari', 'casa branca', 'cedral', 'cerqueira césar', 'cerquilho', 'cesário lange', 'colina', 'conchal', 'conchas', 'cordeirópolis', 'cosmópolis', 'cravinhos', 'cristais paulista', 'cubatão', 'descalvado', 'dobrada', 'dois córregos', 'dourado', 'elias fausto', 'engenheiro coelho', 'estiva gerbi', 'fernando prestes', 'franca', 'francisco morato', 'franco da rocha', 'gavião peixoto', 'guaíra', 'guapiaçu', 'guarantã', 'guararema', 'guariba', 'guarujá', 'guatapará', 'holambra', 'hortolândia', 'iaras', 'ibaté', 'ibitinga', 'igaraçu do tietê', 'igaratá', 'indaiatuba', 'iperó', 'iracemápolis', 'itaí', 'itajobi', 'itaju', 'itanhaém', 'itapetininga', 'itápolis', 'itapuí', 'itatinga', 'itirapuã', 'itu', 'itupeva', 'jaborandi', 'jaboticabal', 'jacareí', 'jaguariúna', 'jarinu', 'jaú', 'jumirim', 'jundiaí', 'laranjal paulista', 'leme', 'lençóis paulista', 'limeira', 'lindóia', 'lins', 'louveira', 'macatuba', 'mairiporã', 'manduri', 'matão', 'mineiros do tietê', 'mirassol', 'mogi das cruzes', 'mogi guaçu', 'mogi mirim', 'mongaguá', 'monte alegre do sul', 'monte alto', 'monte mor', 'motuca', 'nazaré paulista', 'nova europa', 'nova odessa', 'óleo', 'olímpia', 'paranapanema', 'pardinho', 'patrocínio paulista', 'paulínia', 'pederneiras', 'pedreira', 'pereiras', 'peruíbe', 'pilar do sul', 'pindorama', 'piracaia', 'piracicaba', 'pirajuí', 'pirassununga', 'piratininga', 'pitangueiras', 'porangaba', 'porto ferreira', 'praia grande', 'pratânia', 'presidente alves', 'quadra', 'rafard', 'ribeirão bonito', 'ribeirão corrente', 'ribeirão preto', 'rincão', 'rio claro', 'rio das pedras', 'salesópolis', 'saltinho', 'salto de pirapora', 'santa adélia', 'santa bárbara d’oeste', 'santa branca', 'santa cruz das palmeiras', 'santa ernestina', 'santa gertrudes', 'santa lúcia', 'santa rita do passa quatro', 'santa rosa de viterbo', 'santo antônio de posse', 'santos', 'são bernardo do campo', 'são carlos', 'são josé do rio preto', 'são josé dos campos', 'são manuel', 'são vicente', 'sarapuí', 'serra azul', 'serra negra', 'sorocaba', 'sumaré', 'tabatinga', 'tambaú', 'taquaritinga', 'tatuí', 'taubaté', 'tietê', 'trabiju', 'tremembé', 'uchoa', 'valinhos', 'várzea paulista', 'vinhedo', 'votorantim'])
+    };
+
+    const tools = [{
+        functionDeclarations: [
+            {
+                name: "start_customer_registration",
+                description: "Finaliza o processo de cadastro do cliente após ele ter fornecido todos os dados necessários e confirmado o plano. Esta função envia os dados para o sistema.",
+                parameters: { type: "OBJECT", properties: { plano: { type: "STRING" }, nome_completo: { type: "STRING" }, nome_mae: { type: "STRING" }, data_nascimento: { type: "STRING" }, cpf: { type: "STRING" }, rg: { type: "STRING" }, email: { type: "STRING" }, rua_numero: { type: "STRING" }, bairro: { type: "STRING" }, cidade: { type: "STRING" }, cep: { type: "STRING" }, periodo_instalacao: { type: "STRING" } }, required: ["plano", "nome_completo", "nome_mae", "data_nascimento", "cpf", "rg", "email", "rua_numero", "bairro", "cidade", "cep", "periodo_instalacao"] }
+            },
+            {
+                name: "validate_cpf",
+                description: "Valida um número de CPF para verificar se é um documento matematicamente válido.",
+                parameters: { type: "OBJECT", properties: { cpf: { type: "STRING" } }, required: ["cpf"] }
+            },
+            {
+                name: "check_address_coverage",
+                description: "Verifica se a cidade informada pelo cliente possui cobertura da Piel Telecom.",
+                parameters: { type: "OBJECT", properties: { cidade: { type: "STRING" } }, required: ["cidade"] }
+            },
+            {
+                name: "get_plan_details",
+                description: "Busca e retorna os detalhes de um plano de internet específico, como preço, velocidades e perfil de uso.",
+                parameters: { type: "OBJECT", properties: { nome_do_plano: { type: "STRING", description: "O nome do plano a ser consultado, ex: 'Fibra Home 600M+'" } }, required: ["nome_do_plano"] }
+            },
+            {
+                name: "notify_sales_team",
+                description: "Formata os dados de um novo cliente e prepara uma mensagem de WhatsApp para notificar a equipe de vendas.",
+                parameters: { type: "OBJECT", properties: { plano: { type: "STRING" }, nome_completo: { type: "STRING" }, nome_mae: { type: "STRING" }, data_nascimento: { type: "STRING" }, cpf: { type: "STRING" }, rg: { type: "STRING" }, email: { type: "STRING" }, rua_numero: { type: "STRING" }, bairro: { type: "STRING" }, cidade: { type: "STRING" }, cep: { type: "STRING" }, periodo_instalacao: { type: "STRING" } }, required: ["plano", "nome_completo", "cpf", "cidade"] }
+            }
+        ]
+    }];
+
+    const toolFunctions = {
+        validate_cpf: ({ cpf }) => {
+            cpf = cpf.replace(/[^\d]+/g, '');
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return { "isValid": false };
+            let sum = 0, remainder;
+            for (let i = 1; i <= 9; i++) sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            remainder = (sum * 10) % 11;
+            if ((remainder === 10) || (remainder === 11)) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(9, 10))) return { "isValid": false };
+            sum = 0;
+            for (let i = 1; i <= 10; i++) sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            remainder = (sum * 10) % 11;
+            if ((remainder === 10) || (remainder === 11)) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(10, 11))) return { "isValid": false };
+            return { "isValid": true };
+        },
+        check_address_coverage: ({ cidade }) => {
+            const hasCoverage = KNOWLEDGE_BASE.cidadesComCobertura.has(cidade.toLowerCase().trim());
+            return { hasCoverage };
+        },
+        get_plan_details: ({ nome_do_plano }) => {
+            let plan = null;
+            const searchKey = Object.keys(KNOWLEDGE_BASE.planos).find(key => key.toLowerCase().includes(nome_do_plano.toLowerCase()));
+            if (searchKey) {
+                plan = KNOWLEDGE_BASE.planos[searchKey];
+            }
+
+            if (plan) {
+                return { success: true, details: plan };
+            }
+            return { success: false, message: "Plano não encontrado." };
+        },
+        start_customer_registration: (data) => {
+            console.log("REGISTRATION DATA TO BE SENT TO CRM:", data);
+            return { success: true, message: "Cadastro recebido. Um consultor humano irá revisar e confirmar os detalhes." };
+        },
+        notify_sales_team: (data) => {
+            const planDetails = KNOWLEDGE_BASE.planos[data.plano] || { preco: "N/A" };
+            const message = `✨ NOVO LEAD QUALIFICADO (VIA JARVIS) ✨
+-----------------------------------
+*Plano de Interesse:* ${data.plano}
+*Valor:* ${planDetails.preco}
+-----------------------------------
+*Nome:* ${data.nome_completo}
+*Mãe:* ${data.nome_mae}
+*Nascimento:* ${data.data_nascimento}
+*CPF:* ${data.cpf}
+*RG:* ${data.rg}
+*E-mail:* ${data.email}
+*Endereço:* ${data.rua_numero}, ${data.bairro}, ${data.cidade} - ${data.cep}
+*Instalação:* ${data.periodo_instalacao}
+-----------------------------------
+*Cliente aguardando contato para finalização.*`;
+            
+            const whatsappUrl = `https://wa.me/${KNOWLEDGE_BASE.numero_whatsapp_vendas}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            return { success: true, message: "Notificação enviada para a equipe de vendas." };
+        }
+    };
+
+    async function callGeminiAPI(history) {
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
+        const payload = { contents: history, tools };
+        try {
+            const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            if (!response.ok) throw new Error(`API Error: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error("Gemini API call failed:", error);
+            return { error: "Não foi possível conectar à IA no momento. Tente novamente mais tarde." };
+        }
+    }
+
+    async function handleJarvisMessage(message) {
+        const session = userSessions[userId];
+        session.history.push({ role: "user", parts: [{ text: message }] });
+
+        addTypingIndicator();
+        let apiResponse = await callGeminiAPI(session.history);
+        removeTypingIndicator();
+
+        if (apiResponse.error) return apiResponse.error;
+        if (!apiResponse.candidates || apiResponse.candidates.length === 0) {
+             return "Desculpe, não consegui processar sua solicitação no momento.";
+        }
+
+        let responsePart = apiResponse.candidates[0].content.parts[0];
+
+        while (responsePart.functionCall) {
+            const functionCall = responsePart.functionCall;
+            const functionName = functionCall.name;
+            const functionArgs = functionCall.args;
+
+            if (toolFunctions[functionName]) {
+                const toolResult = toolFunctions[functionName](functionArgs);
+                session.history.push({ role: "model", parts: [{ functionCall }] });
+                session.history.push({ role: "tool", parts: [{ functionResponse: { name: functionName, response: toolResult } }] });
+
+                addTypingIndicator();
+                apiResponse = await callGeminiAPI(session.history);
+                removeTypingIndicator();
+                
+                if (!apiResponse.candidates || apiResponse.candidates.length === 0) {
+                    return "Ocorreu um erro ao processar a resposta da ferramenta.";
+                }
+                responsePart = apiResponse.candidates[0].content.parts[0];
+            }
+        }
+
+        const modelResponse = responsePart.text;
+        session.history.push({ role: "model", parts: [{ text: modelResponse }] });
+        return modelResponse;
+    }
+
+    function formatMessage(text) {
+        if (typeof text !== 'string') return '';
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    }
+
+    function addMessageToLog(message, sender) {
+        const messageContainer = document.createElement('div');
+        messageContainer.className = sender === 'user' ? 'user-message' : 'jarvis-message';
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+        bubble.innerHTML = formatMessage(message);
+
+        messageContainer.appendChild(bubble);
+        jarvisNodes.chatLog.appendChild(messageContainer);
+        jarvisNodes.chatLog.scrollTop = jarvisNodes.chatLog.scrollHeight;
+    }
+
+    function addTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.id = 'typing-indicator-bubble';
+        indicator.className = 'jarvis-message';
+        indicator.innerHTML = `<div class="message-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+        jarvisNodes.chatLog.appendChild(indicator);
+        jarvisNodes.chatLog.scrollTop = jarvisNodes.chatLog.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator-bubble');
+        if (indicator) indicator.remove();
+    }
+
+    async function sendUserMessage() {
+        const message = jarvisNodes.userInput.value.trim();
+        if (message === '') return;
+        
+        addMessageToLog(message, 'user');
+        jarvisNodes.userInput.value = '';
+        jarvisNodes.userInput.disabled = true;
+        jarvisNodes.sendButton.disabled = true;
+
+        const jarvisResponse = await handleJarvisMessage(message);
+        addMessageToLog(jarvisResponse, 'jarvis');
+
+        jarvisNodes.userInput.disabled = false;
+        jarvisNodes.sendButton.disabled = false;
+        jarvisNodes.userInput.focus();
+    }
+
+    function toggleChat() {
+        const isOpen = jarvisNodes.chatContainer.classList.toggle('is-open');
+        jarvisNodes.openIcon.classList.toggle('hidden', isOpen);
+        jarvisNodes.closeIcon.classList.toggle('hidden', !isOpen);
+        if (isOpen) {
+            initJarvisSession();
+            jarvisNodes.userInput.focus();
+        }
+    }
+
+    function initJarvisSession() {
+        const session = userSessions[userId];
+        if (!session || !session.history) {
+            const planosParaPrompt = JSON.stringify(KNOWLEDGE_BASE.planos, null, 2);
+            userSessions[userId] = {
+                history: [
+                    { role: "user", parts: [{ text: `System instruction: Você é Jarvis, um assistente de IA da Piel Telecom. Seu objetivo principal é qualificar leads e conduzir o processo de venda de planos de internet fibra óptica de forma consultiva e eficiente.
+Persona: Seja sempre extremamente educado, proativo, sofisticado e preciso, como um mordomo tecnológico. Trate o cliente por "Senhor". Sua comunicação deve ser clara e inspirar confiança.
+Fluxo de Conversa:
+1. Saudação e Análise: Comece se apresentando e perguntando sobre a necessidade do cliente para entender o perfil de uso (Família, Gamer, Home Office, etc.).
+2. Recomendação Consultiva: Com base na necessidade, recomende o melhor plano. Use a ferramenta 'get_plan_details' para obter informações específicas e justificar sua recomendação com os argumentos de venda da base de conhecimento (ex: "Por apenas R$5 a mais, o senhor leva 200 Mega a mais...").
+3. Coleta de Dados: Se o cliente aceitar, inicie a coleta de dados para o cadastro, uma informação por vez (Nome Completo, Nome da Mãe, etc.).
+4. Validação Imediata e Proativa: Assim que o cliente fornecer um CPF ou uma cidade, você DEVE usar a ferramenta correspondente ('validate_cpf' ou 'check_address_coverage') imediatamente na sua próxima ação. Após a ferramenta retornar um resultado válido, você DEVE prosseguir IMEDIATAMENTE para a próxima pergunta do cadastro, sem esperar o cliente dizer 'ok'. Exemplo de fluxo: Cliente envia CPF -> IA chama validate_cpf -> Ferramenta retorna 'válido' -> IA responde "CPF válido, obrigado. Agora, qual o seu RG?". O fluxo deve ser contínuo e sem interrupções.
+5. Finalização e Notificação: Após coletar todos os dados com sucesso, chame a ferramenta 'start_customer_registration' para registrar o cliente. IMEDIATAMENTE APÓS, chame a ferramenta 'notify_sales_team' com os mesmos dados para enviar a notificação para a equipe de vendas. Por fim, informe ao cliente que um consultor humano entrará em contato.
+Regras Importantes:
+- Não invente planos ou preços. Use apenas as informações da sua base de conhecimento através da ferramenta 'get_plan_details'.
+- Se a cidade do cliente não estiver na lista de cobertura, informe-o educadamente e diga que o contato será guardado para futuras expansões. Encerre o fluxo de venda nesse ponto.
+- Se um dado for inválido (ex: CPF), peça para o cliente verificar e informar novamente.
+- Mantenha o controle da conversa, guiando o cliente passo a passo de forma proativa.
+Base de Conhecimento de Planos (para consulta via ferramenta): ${planosParaPrompt}` }] },
+                    { role: "model", parts: [{ text: "Olá, Senhor. Eu sou o Jarvis, assistente virtual da Piel Telecom. Como posso auxiliá-lo a encontrar o plano de fibra óptica ideal para suas necessidades?" }] }
+                ]
+            };
+            addMessageToLog(userSessions[userId].history[1].parts[0].text, 'jarvis');
+        }
+    }
+
+    jarvisNodes.chatButton.addEventListener('click', toggleChat);
+    jarvisNodes.sendButton.addEventListener('click', sendUserMessage);
+    jarvisNodes.userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendUserMessage();
+    });
+});
+
+
     </script>
 </body>
 </html>
