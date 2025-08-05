@@ -791,7 +791,7 @@
             return;
         }
 
-        if (USER_API_KEY === "COLE_SUA_API_KEY_AQUI" || !USER_API_KEY) {
+        if (USER_API_KEY === "AIzaSyDlJWR9Kqlpdvyi1XM1yaKHaQxfDs7V_Y0" || !USER_API_KEY) {
             displayUserError("API Key do Google não configurada. Por favor, adicione sua chave no código para a IA funcionar.", NODES.recommenderError);
             console.warn("Chave de API do Gemini não encontrada. Insira sua chave na variável USER_API_KEY.");
             return;
@@ -812,7 +812,7 @@
             }
         };
         
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${USER_API_KEY}`;
 
         try {
             const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -1179,7 +1179,7 @@
     };
 
     async function callGeminiAPI(history) {
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${USER_API_KEY}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${USER_API_KEY}`;
         const payload = { contents: history, tools };
         try {
             const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
